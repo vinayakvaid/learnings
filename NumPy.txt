@@ -1,0 +1,104 @@
+NumPy Tutorials
+
+NumPy - it is a linear algebra library for python and all most all libraries in python ecosystem rely on numpy as bulding blocks
+		and also it is incredibly fast since it has bindngs to C libraries
+		
+NumPy Arrays
+	it comes in two flavours - vectors (1-d) and matrices (2-d) (but matrix can still have only one row or one column)
+	We can cast python objects into arrays such as lists as below
+		
+		import numpy as np
+
+		list = [1,2,3]						
+		list1 = [[1,2,3],[4,5,6],[7,8,9]] 
+		print(list)
+
+		arr = np.array(list)				-------> 1-d array 
+		print(arr)
+		
+		arr1 = np.array(list1)				-------> 2-d array
+		print(arr1)
+	output:
+		[1, 2, 3]
+		[1 2 3]
+		[[1 2 3]
+		 [4 5 6]
+		 [7 8 9]]
+		 
+	We can also use numpy's internal methods to generate arrays as
+	
+		numpy.arange(start, stop, step) -
+			import numpy as np
+			print(np.arange(0,11,2))	 -----> [ 0  2  4  6  8 10] evenly spaced values separated by step size where third argument step size is optional
+			
+		numpy.zeros(size) - 
+			import numpy as np
+			print(np.zeros(3))
+			print(np.zeros((2,3)))		------> pass tuple if you want 2-d array and single number if you want 1-d array
+			
+			[0. 0. 0.]
+			[[0. 0. 0.]
+			 [0. 0. 0.]]
+			 
+		numpy.ones(size)	 			------> similar to zeros will produce an array of ones
+		
+		numpy.linspace(start,stop,numbers)
+			import numpy as np
+			print(np.linspace(0,3,5))	------> will produce 1-d array of that many numbers which you have specified in the third argument
+			
+			[0.   0.75 1.5  2.25 3.  ] 	------> it is different from arange function since arnage function takes step as argument and returns evenly spaced numbers between
+												the two numbers with that step size
+												
+		numpy.eye(size)					-------> will produce an identity matrix of dimension mentioned in arguments
+		
+		numpy.random.rand(size)				-------> returns an array of size mentioned of numbers between -1 and 1 over uniform distribution
+			print(np.random.rand(4,4))		-------> if we want 2-d array just pass the size, no need to pass a tuple of numbers
+			
+		numpy.random.randn(size)			-------> returns an array of size mentioned of numbers between -1 and 1 over normal distribution
+		
+		numpy.random.randint(low,high,size)	--------> returns an array of random numners between low (inclusive) and high (exclusive) numbers of size specified by argument
+			import numpy as np
+			print(np.random.randint(-100,100,10))
+			
+			[ 84 -48  91  95 -27   1   6  29 -92  50]
+			
+			
+	Some important attributes and methods of arrays
+		
+		arr.reshape() - 
+			import numpy as np
+			arr = np.arange(0,25)
+			print(arr)
+			arr = arr.reshape(5,5)			----> reshaped array into new size but note that the new size should take all the elements in original array, no more or less
+			print(arr)
+		
+			[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+			 24]
+			[[ 0  1  2  3  4]
+			 [ 5  6  7  8  9]
+			 [10 11 12 13 14]
+			 [15 16 17 18 19]
+			 [20 21 22 23 24]]
+		 
+		arr.max() 					-----> returns the maximum value in the array
+		
+		arr.min() 					-----> returns the minimun value in the array
+		
+		arr.argmax()				-----> returns the index of the maximum value starting from zero
+			import numpy as np
+			arr = np.random.randint(0,35,10)
+			print(arr)
+			print(arr.argmax())
+				
+			[ 0  5 12 12  0  0 16 11  8 10]
+			6
+		
+		arr.argmin() 				-----> returns the index of the minimun value starting from zero
+		
+		arr.shape					-----> returns the shape or size of any array , note there are no parantheses
+											for 1-d, shape = (25,) and for 2-d, shape = (5,5)
+											
+		arr.dtype					-----> returns the data type of the elements in the array
+
+		
+	
