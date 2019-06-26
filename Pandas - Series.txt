@@ -1,0 +1,130 @@
+Series
+	
+	Pandas Series is a one-dimensional labeled array capable of holding data of any type (integer, string, float, python objects, etc.). The axis labels are collectively called index. Pandas Series is nothing but a column in an excel sheet.
+	Labels need not be unique but must be a hashable type. The object supports both integer and label-based indexing and provides a host of methods for performing operations involving the index.
+	
+	> Creating series from python list
+		import numpy as np
+		import pandas as pd
+		labels = ["a","b","c"]
+		my_data = [10,20,30]
+		arr = np.array(my_data)
+		d = {"a":10, "b":20, "c":30}
+		series1 = pd.Series(data=my_data)
+		print(series1)
+		
+		output - here we get 0,1,2 as index and 10,20,30 as their values, its similar to numpy array except it has indexes
+		0    10
+		1    20
+		2    30
+		dtype: int64 
+	
+	> Creating series from python list with index
+		import numpy as np
+		import pandas as pd
+		labels = ["a","b","c"]
+		my_data = [10,20,30]
+		arr = np.array(my_data)
+		d = {"a":10, "b":20, "c":30}
+		series1 = pd.Series(my_data,labels)
+		print(series1)
+		
+		output - here we have specified index, so this is indexed series with indexes of our choice
+		a    10
+		b    20
+		c    30
+		dtype: int64
+		
+	
+	> Creating series from numpy array
+		import numpy as np
+		import pandas as pd
+		labels = ["a","b","c"]
+		my_data = [10,20,30]
+		arr = np.array(my_data)
+		d = {"a":10, "b":20, "c":30}
+		series1 = pd.Series(arr,labels)
+		print(series1)
+		
+		output -
+		a    10
+		b    20
+		c    30
+		dtype: int32
+		
+		
+	> Creating series from dictionary
+		import pandas as pd
+		d = {"a":10, "b":20, "c":30}
+		series1 = pd.Series(d)
+		print(series1)
+		
+		output - here keys of a dictionary are put as indexes
+		a    10
+		b    20
+		c    30
+		dtype: int64
+		
+		
+	> You can also store other object types than numbers in series which differentiates it from numpy array
+		import pandas as pd
+		series1 = pd.Series([print,len,sum])
+		print(series1)
+		
+		output-
+		0    <built-in function print>
+		1      <built-in function len>
+		2      <built-in function sum>
+		dtype: object
+		
+
+	> Accessing values from series
+		import pandas as pd
+		series1 = pd.Series([1,2,3,4],["USA","Germany","USSR","Japan"])
+		print(series1)
+		print(series1["Germany"])
+		
+		output-
+		USA        1
+		Germany    2
+		USSR       3
+		Japan      4
+		dtype: int64
+		2
+		
+	> If we try to add two series, it will add the values if possible based on similar indexes but where it doesnt find the similar index, it will give Nan
+	  Also, interger numbers have been added and chnaged to float, this is done in order to ratain all the information possible
+		import pandas as pd
+		series1 = pd.Series([1,2,3,4],["USA","Germany","USSR","Japan"])
+		series2 = pd.Series([1,2,5,4],["USA","Germany","Italy","Japan"])
+		print(series1)
+		print(series2)
+		print(series1 + series2)
+		
+		output-
+		USA        1
+		Germany    2
+		USSR       3
+		Japan      4
+		dtype: int64
+		USA        1
+		Germany    2
+		Italy      5
+		Japan      4
+		dtype: int64
+		Germany    4.0
+		Italy      NaN
+		Japan      8.0
+		USA        2.0
+		USSR       NaN
+		dtype: float64
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
