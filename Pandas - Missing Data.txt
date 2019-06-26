@@ -1,0 +1,118 @@
+Missing Data
+	Missing Data can occur when no information is provided for one or more items or for a whole unit. Missing Data is a very big problem in real life scenario. Missing Data can also refer to as NA(Not Available) values in pandas. In DataFrame sometimes many datasets simply arrive with missing data, either because it exists and was not collected or it never existed. For Example, Suppose different user being surveyed may choose not to share their income, some user may choose not to share the address in this way many datasets went missing.
+	
+	import numpy as np
+	import pandas as pd
+	d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+	df = pd.DataFrame(d)
+	print(df)
+	
+	output-
+	     A    B  C
+	0  1.0  NaN  6
+	1  2.0  5.0  7
+	2  NaN  NaN  8
+	
+	> We can drop the rows as well as columns containing these missing values
+		import numpy as np
+		import pandas as pd
+		d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+		df = pd.DataFrame(d)
+		print(df)
+		df = df.dropna()			-----> by default, the rows containing missing values are dropped, if we want to drop columns, we need to specify value of axis parameter 
+		print(df)
+		
+		output-
+		     A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+		2  NaN  NaN  8
+			 A    B  C
+		1  2.0  5.0  7
+		
+		
+		import numpy as np
+		import pandas as pd
+		d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+		df = pd.DataFrame(d)
+		print(df)
+		df = df.dropna(axis=1)
+		print(df)
+		
+		output-
+		     A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+		2  NaN  NaN  8
+		   C
+		0  6
+		1  7
+		2  8
+		
+		
+	> We can also specify the threshold which means that it will check for those many non-NaN values and delete the rows/columns where that threshold is not met
+		import numpy as np
+		import pandas as pd
+		d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+		df = pd.DataFrame(d)
+		print(df)
+		df = df.dropna(thresh=2)---> we have mentioned threshold as 2 means it will keep the row/column with min 2 non-NaN values, so kept 0 row and deleted 2 due to 1 non-NaN value
+		print(df)
+		
+		output-
+		     A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+		2  NaN  NaN  8
+			 A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+	
+	
+	> Filling the NaN values - 
+		import numpy as np
+		import pandas as pd
+		d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+		df = pd.DataFrame(d)
+		print(df)
+		df = df.fillna("Fill")
+		print(df)
+		
+		output-
+		     A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+		2  NaN  NaN  8
+			  A     B  C
+		0     1  Fill  6
+		1     2     5  7
+		2  Fill  Fill  8
+		
+	
+	> We can also use formalue to fill the missing value
+		import numpy as np
+		import pandas as pd
+		d = {"A":[1,2,np.nan],"B":[np.nan,5,np.nan],"C":[6,7,8]}
+		df = pd.DataFrame(d)
+		print(df)
+		print(df.fillna(value=df["A"].mean())) -----> here all the missing values have been filled with mean of A column
+		
+		output-
+		     A    B  C
+		0  1.0  NaN  6
+		1  2.0  5.0  7
+		2  NaN  NaN  8
+			 A    B  C
+		0  1.0  1.5  6
+		1  2.0  5.0  7
+		2  1.5  1.5  8
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		

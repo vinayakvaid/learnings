@@ -16,7 +16,19 @@ Pandas
 		3 -2.018168  0.740122  0.528813 -0.589001
 		4  0.188695 -0.758872 -0.933237  0.955057
 		5  0.190794  1.978757  2.605967  0.683509
+	
+	> Data frames can also be created from dictionaries
+		import pandas as pd
+		d = {"A":[1,2,3],"B":[4,5,6]}
+		df = pd.DataFrame(d)
+		print(df)
 		
+		output-
+		   A  B
+		0  1  4
+		1  2  5
+		2  3  6
+
 		
 	> Getting column from a data frame
 		import numpy as np
