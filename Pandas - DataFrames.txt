@@ -1,0 +1,545 @@
+Pandas
+	Pandas DataFrame is two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). A Data frame is a two-dimensional data structure, i.e., data is aligned in a tabular fashion in rows and columns. Pandas DataFrame consists of three principal components, the data, rows, and columns.
+	
+	> Creating basic data frame
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		
+		output- its basically bunch of series which are sharing indexes
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		
+		
+	> Getting column from a data frame
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df["A"]) 						--------> can also be done as df.A but its confusing, so avoid it
+		print(type(df["A"]))
+		print(type(df))
+		
+		output-
+		1    2.706850
+		2    0.651118
+		3   -2.018168
+		4    0.188695
+		5    0.190794
+		Name: A, dtype: float64
+		<class 'pandas.core.series.Series'>			------> here we can see that type poa A ia series which re-iterates the fact that data frame is collection of series
+		<class 'pandas.core.frame.DataFrame'>
+		
+		
+	> Getting multiple columns, we need to pass list of that columns, here we can see when we want multiple columns it gives us back a data frame and for a single column, it gives back a series
+		print(df[["A","C"]])
+		
+		output-
+		          A         C
+		1  2.706850  0.907969
+		2  0.651118 -0.848077
+		3 -2.018168  0.528813
+		4  0.188695 -0.933237
+		5  0.190794  2.605967
+
+	> Creating a new column using existing columns
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		df["A+D"] = df["A"] + df["D"]
+		print(df)
+
+		output-
+		          A         B         C         D       A+D
+		1  2.706850  0.628133  0.907969  0.503826  3.210676
+		2  0.651118 -0.319318 -0.848077  0.605965  1.257083
+		3 -2.018168  0.740122  0.528813 -0.589001 -2.607169
+		4  0.188695 -0.758872 -0.933237  0.955057  1.143752
+		5  0.190794  1.978757  2.605967  0.683509  0.874303
+
+	> Dropping a column or row from data frame - one thing to be noted here is that in data frames, rows are taken to be at 0 axis and columns at 1 axis. the logic for this comes    from shape of data frame which we can get using df.shape method - (5,4). So here as you can see rows are at 0 axis and columns at 1
+	Also, df.drop() will not make changes to existing data frame until we specify the inplace paramter inside it to be true, else we need to do the following
+		
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		df.drop(1,0)				--------> its hasnt done anthing to data frame
+		df = df.drop("D",1)
+		print(df)
+
+		output-
+		          A         B         C
+		1  2.706850  0.628133  0.907969
+		2  0.651118 -0.319318 -0.848077
+		3 -2.018168  0.740122  0.528813
+		4  0.188695 -0.758872 -0.933237
+		5  0.190794  1.978757  2.605967
+
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		df.drop(1,0,inplace=True)			------> this has done something to data frame
+		df = df.drop("D",1)
+		print(df)
+	
+		output-
+		          A         B         C
+		2  0.651118 -0.319318 -0.848077
+		3 -2.018168  0.740122  0.528813
+		4  0.188695 -0.758872 -0.933237
+		5  0.190794  1.978757  2.605967
+
+	> Getting a row from a data frame - the output of a row also concludes that its made up of series
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print(df.loc[2])
+
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		A    0.651118
+		B   -0.319318
+		C   -0.848077
+		D    0.605965
+		Name: 2, dtype: float64
+
+		
+		Using iloc method, we can maake numberical index based selection of rows, since index starts from 0, so row present at label 3 is selected here
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print(df.iloc[2])
+		
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		A   -2.018168
+		B    0.740122
+		C    0.528813
+		D   -0.589001
+		Name: 3, dtype: float64
+
+
+	> Getting a single value from a data frame
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print(df.loc[3,"C"])
+
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		0.5288134940893595
+		
+		
+	> For getting a subset of data frame, you pass list as below
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print(df.loc[[2,3,4],["C","A"]])			-------> Please note the order here has also been reversed.
+		
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+				  C         A
+		2 -0.848077  0.651118
+		3  0.528813 -2.018168
+		4 -0.933237  0.188695
+
+
+
+	> Conditional selection - checking where value is greater than 0
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		booldf = df>0 			------> it will give us the data frame where value is greater than 0
+		print(booldf)
+
+		output- 
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+			   A      B      C      D
+		1   True   True   True   True
+		2   True  False  False   True
+		3  False   True   True  False
+		4   True  False  False   True
+		5   True   True   True   True
+
+
+	> Now if we want to get the values where value is greater than 0, we can do like this -
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		booldf = df>0
+		print(df[booldf])			------> using this, it will give the value where it satifies the condition and NaN where it fails the condition
+
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+				  A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118       NaN       NaN  0.605965
+		3       NaN  0.740122  0.528813       NaN
+		4  0.188695       NaN       NaN  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		
+
+	> Conditional selection on the basis of row
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print("****************")
+		print(df['A']>0)				------> when condition is on row, it returns you the series with True and False where it satisfies and vice versa
+		print("****************")
+		print(df[df["A"]>0])			------> but when this series is put in data frame to extract the values, then you only get the values where that row condition is met, here 3rd row is omitted
+
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		****************
+		1     True
+		2     True
+		3    False
+		4     True
+		5     True
+		Name: A, dtype: bool
+		****************
+				  A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		
+		
+	> We can also use data frame methods to access values from the resultant data frame such as -
+		print(df[df["A"]>0]["B"])
+					or
+		print(df[df["A"]>0][["A","D"]])
+		
+		
+	> We can also put multiple conditional statements but need to replace python's and with & and python's or with |
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),[1,2,3,4,5],["A","B","C","D"])
+		print(df)
+		print("****************")
+		print(df['A']>0)
+		print("****************")
+		print(df["C"] >1)
+		print("****************")
+		print( df[ (df["A"]>0) & (df["C"]>1)] ) -----> python's and operator can not take into account two series of boolean values
+
+		output-
+		          A         B         C         D
+		1  2.706850  0.628133  0.907969  0.503826
+		2  0.651118 -0.319318 -0.848077  0.605965
+		3 -2.018168  0.740122  0.528813 -0.589001
+		4  0.188695 -0.758872 -0.933237  0.955057
+		5  0.190794  1.978757  2.605967  0.683509
+		****************
+		1     True
+		2     True
+		3    False
+		4     True
+		5     True
+		Name: A, dtype: bool
+		****************
+		1    False
+		2    False
+		3    False
+		4    False
+		5     True
+		Name: C, dtype: bool
+		****************
+				  A         B         C         D
+		5  0.190794  1.978757  2.605967  0.683509
+
+
+	> We can also reset our index to default index of values 0,1,2,3,.....n and if we do so then our present index will become one of the rows of the data frame
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),["US","UK","AU","IN","PK"],["A","B","C","D"])
+		print(df)
+		print("****************")
+		new_df = df.reset_index()
+		print(new_df)
+		
+		output-
+		            A         B         C         D
+		US  2.706850  0.628133  0.907969  0.503826
+		UK  0.651118 -0.319318 -0.848077  0.605965
+		AU -2.018168  0.740122  0.528813 -0.589001
+		IN  0.188695 -0.758872 -0.933237  0.955057
+		PK  0.190794  1.978757  2.605967  0.683509
+		****************
+		  index         A         B         C         D
+		0    US  2.706850  0.628133  0.907969  0.503826
+		1    UK  0.651118 -0.319318 -0.848077  0.605965
+		2    AU -2.018168  0.740122  0.528813 -0.589001
+		3    IN  0.188695 -0.758872 -0.933237  0.955057
+		4    PK  0.190794  1.978757  2.605967  0.683509
+
+	
+	> We can also add a new index to the data frame. For doing this, first we will add that values as column to the data frame and then we will set this column as the new index of the data frame
+		import numpy as np
+		import pandas as pd
+		from numpy.random import randn
+		np.random.seed(101)
+		df = pd.DataFrame(randn(5,4),["US","UK","AU","IN","PK"],["A","B","C","D"])
+		print(df)
+		print("****************")
+		new_index = "Java Sql Mongo Python Vba".split()
+		df["language"] = new_index
+		df = df.set_index("language")
+		print(df)			------> shape is still (5,4)
+
+		output-
+		           A         B         C         D
+		US  2.706850  0.628133  0.907969  0.503826
+		UK  0.651118 -0.319318 -0.848077  0.605965
+		AU -2.018168  0.740122  0.528813 -0.589001
+		IN  0.188695 -0.758872 -0.933237  0.955057
+		PK  0.190794  1.978757  2.605967  0.683509
+		****************
+						 A         B         C         D
+		language                                        
+		Java      2.706850  0.628133  0.907969  0.503826
+		Sql       0.651118 -0.319318 -0.848077  0.605965
+		Mongo    -2.018168  0.740122  0.528813 -0.589001
+		Python    0.188695 -0.758872 -0.933237  0.955057
+		Vba       0.190794  1.978757  2.605967  0.683509
+		
+		
+	> Creating data frames with multi-level indexes
+		import numpy as np
+		import pandas as pd
+		# Index levels
+		outside = ["G1","G1","G1","G2","G2","G2"]
+		inside = [1,2,3,1,2,3]
+		hier_index = list(zip(outside,inside))
+		hier_index = pd.MultiIndex.from_tuples(hier_index)
+		print(hier_index)
+		df = pd.DataFrame(np.random.randn(6,2),hier_index,["A","B"])
+		print(df)
+	
+		output-
+		MultiIndex(levels=[['G1', 'G2'], [1, 2, 3]],
+           codes=[[0, 0, 0, 1, 1, 1], [0, 1, 2, 0, 1, 2]])
+					A         B
+		G1 1 -0.544928  0.644275
+		   2  0.033116  0.014196
+		   3 -0.000623 -0.165046
+		G2 1  0.982023 -0.368554
+		   2  1.214926 -1.897721
+		   3  0.468699 -0.110257
+		   
+	
+	> We can also name the indexes - 
+		df.index.names = ["Groups","Num"]
+		
+		output-
+		                   A         B
+		Groups Num                    
+		G1     1    0.778524 -0.641256
+			   2    0.129341 -0.116531
+			   3    0.468708  1.369883
+		G2     1   -1.627708 -1.711003
+			   2   -1.146059  0.899650
+			   3   -0.043486 -0.853618
+	   
+	
+	> Accessing values from a multi-level index
+		             A         B
+		G1 1 -0.824778 -0.036807
+		   2  0.046551 -1.475777
+		   3 -0.253377  0.102200
+		G2 1 -0.056258  0.175153
+		   2  0.957535 -1.354328
+		   3 -1.008880 -0.539803
+		   
+		print(df.loc["G1"].loc[3]) - 
+			A   -0.253377
+			B    0.1022007	
+			
+		print(df.loc["G1"].loc[3]["B"]) - 
+			0.102200
+			
+			
+	> Suppose we want to access values across different level of indexes, here for example both from G1 and G2 having index as 3
+		import numpy as np
+		import pandas as pd
+		# Index levels
+		outside = ["G1","G1","G1","G2","G2","G2"]
+		inside = [1,2,3,1,2,3]
+		hier_index = list(zip(outside,inside))
+		hier_index = pd.MultiIndex.from_tuples(hier_index)
+		df = pd.DataFrame(np.random.randn(6,2),hier_index,["A","B"])
+		df.index.names = ["Groups","Num"]
+		print(df)
+		print("*************************")
+		print(df.xs(3,level="Num"))
+		
+		output-
+		                   A         B
+		Groups Num                    
+		G1     1   -0.578486 -1.830904
+			   2    0.817742  0.606466
+			   3    0.306681  0.455575
+		G2     1    0.776005 -0.624957
+			   2   -2.671534  0.070340
+			   3    1.365742  1.156607
+		*************************
+					   A         B
+		Groups                    
+		G1      0.306681  0.455575
+		G2      1.365742  1.156607
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
