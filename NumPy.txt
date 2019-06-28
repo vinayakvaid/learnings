@@ -213,6 +213,73 @@ NumPy Array Indexing
 
 NumPy Operations
 
-	> Array with Array operations
+	> Array with array operations and Array with Scalar opeartions
+	
+		import numpy as np
+		arr = np.arange(1,11)
+		arr1 = arr + arr
+		print(arr1)
+		arr2 = arr - arr
+		print(arr2)
+		arr3 = arr * arr
+		print(arr3)
+		arr4 = arr / arr
+		print(arr4)
+		arr5 = arr * 95
+		print(arr5)
+		
+		output - 
+			[ 2  4  6  8 10 12 14 16 18 20]
+			[0 0 0 0 0 0 0 0 0 0]
+			[  1   4   9  16  25  36  49  64  81 100]
+			[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+			[ 95 190 285 380 475 570 665 760 855 950]
+			
+		
+		> if we divide arr by an array having 0 element, it gives you runtime warning and output as Nan but
+		  if we divide scalar by an array containing 0 element, it also gives runtime warning but output will be inf
+			import numpy as np
+			arr = np.arange(0,11)
+			print(arr/arr)
+			print(1/arr)
+			
+			output-
+			[nan  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.]
+			C:/Users/G01212601/PythonProjects/ReLaunched/venv/num.py:3: RuntimeWarning: invalid value encountered in true_divide
+			  print(arr/arr)
+			C:/Users/G01212601/PythonProjects/ReLaunched/venv/num.py:4: RuntimeWarning: divide by zero encountered in true_divide
+			[       inf 1.         0.5        0.33333333 0.25       0.2
+			  print(1/arr)
+			 0.16666667 0.14285714 0.125      0.11111111 0.1       ]
+			 
+		> Can also do exponential operations with arrays
+			import numpy as np
+			arr = np.arange(0,11)
+			print(arr **2)
+			
+			output - [  0   1   4   9  16  25  36  49  64  81 100]
+			
+		
+	> Universal Array Funtions
+		Inbuilt functions used to perform various operations on arrays and operation is performed on every element
+		
+		> Square root -
+		
+			import numpy as np
+			arr = np.arange(0,11)
+			print(np.sqrt(arr))
+		
+			output - [0.         1.         1.41421356 1.73205081 2.         2.23606798  2.44948974    2.64575131   2.82842712   3.         3.16227766]
+			
+		> Exponential - 
+		
+			import numpy as np
+			arr = np.arange(0,11)
+			print(np.exp(arr))
+			
+		> Finding maximum value - 
+			np.max(arr)  ---- same as arr.max()
+			
+		> Rest of the functions can be seen from the documentation of numpy under universal functions section or ufunc - https://docs.scipy.org/doc/numpy/reference/ufuncs.html
 		
 		
