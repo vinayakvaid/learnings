@@ -1,0 +1,178 @@
+GroupBy
+	We will see how to use groupby function to group data and to use aggregate functions
+	GroupBy allows you to group together rows based off of a column and perform an aggregate function on them
+	
+	> We get the groupBy data frame object when we use the groupby() method
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Vanessa","Carl"],
+				"Sales":[200,120,340,124,243]}
+		df = pd.DataFrame(data)
+		print(df)
+		byComp = df.groupby("Company")
+		print(byComp)
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam    200
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT  Vanessa    124
+		4      FB     Carl    243
+		<pandas.core.groupby.generic.DataFrameGroupBy object at 0x012D4270>
+		
+
+	> We can group rows based on similar column names but directly printing the variable only outputs the memory location, another point to be noted here is we get the data frame object in return
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[200,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		byComp = df.groupby("Company")
+		print(byComp)
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam    200
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		<pandas.core.groupby.generic.DataFrameGroupBy object at 0x0000000006BF29E8>
+		
+		
+	> Usage of groupby object comes handy if we use aggregate functions on it
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[200,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		byComp = df.groupby("Company")
+		print("******************")
+		print(byComp.mean()) ---> here you can see, person columns has been erased from output since its string and mean cant be perfomed on it, so pandas automatically removes it
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam    200
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		******************
+				 Sales
+		Company       
+		FB        5678
+		GOOG       160
+		MSFT       287
+
+	
+	> We can use variety if aggregate functions with group by. One more point to be note here is that resulting output is a dataframe as discussed earlier with index as Company column so we can use dataframe methods to retrieve values such as .loc() and others
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[200,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		byComp = df.groupby("Company")
+		print("******************")
+		print(byComp.mean())
+		print("******************")
+		print(byComp.sum().loc["MSFT"])
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam    200
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		******************
+				 Sales
+		Company       
+		FB        5678
+		GOOG       160
+		MSFT       287
+		******************
+		Sales    574
+		Name: MSFT, dtype: int64
+		
+		
+	> All of this can be done in one line in practice
+		print(df.groupby("Company").sum().loc["MSFT"])
+		
+	
+	> We can also count the number of instances and here you can see,it will return Person column since it can be counted as well
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[200,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		print("******************")
+		print(df.groupby("Company").count())
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam    200
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		******************
+				 Person  Sales
+		Company               
+		FB            1      1
+		GOOG          2      2
+		MSFT          2      2
+		
+	
+	> Special care should be taken while using .max()
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[20,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		print("******************")
+		print(df.groupby("Company").max()) ----> although person column is returned but the result of both person and sales column are independent of each other, you can see the sales of Sam is 20 but 120 is returned, so max or min should be avoided in case of string and numbers
+		
+		output-
+		  Company   Person  Sales
+		0    GOOG      Sam     20
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		******************
+				Person  Sales
+		Company              
+		FB       Sarah   5678
+		GOOG       Sam    120
+		MSFT      Carl    340
+		
+		
+	> One of the most interesting method is describe() method, it will give out bunch of information as below (we can also use .transpose() to alter the layout or can use .describe()["FB"] to get the particular values)
+		import pandas as pd
+		data = {"Company":["GOOG","GOOG","MSFT","MSFT","FB"],
+				"Person":["Sam","Charlie","Amy","Carl","Sarah"],
+				"Sales":[20,120,340,234,5678]}
+		df = pd.DataFrame(data)
+		print(df)
+		print("******************")
+		print(df.groupby("Company").describe())
+		
+		output-  Company   Person  Sales
+		0    GOOG      Sam     20
+		1    GOOG  Charlie    120
+		2    MSFT      Amy    340
+		3    MSFT     Carl    234
+		4      FB    Sarah   5678
+		******************
+				Sales                                                           
+				count    mean        std     min     25%     50%     75%     max
+		Company                                                                 
+		FB        1.0  5678.0        NaN  5678.0  5678.0  5678.0  5678.0  5678.0
+		GOOG      2.0    70.0  70.710678    20.0    45.0    70.0    95.0   120.0
+		MSFT      2.0   287.0  74.953319   234.0   260.5   287.0   313.5   340.0
