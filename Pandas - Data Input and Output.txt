@@ -1,0 +1,138 @@
+Data Input and Output
+	
+	> CSV
+	> Excel
+	> HTML
+	> SQL
+	
+	> Reading from csv file
+		import pandas as pd
+		df = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/example")
+		print(df)
+		
+		output-
+		    a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		
+	
+	> Writing to a csv file, new file will be created with given name and data will be same as that of data inside data frame
+		import pandas as pd
+		df = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/example")
+		print(df)
+		print("**************")
+		df.to_csv("New Entry") ------> the reason why this extra column is added is because we havent specified index=False in the parameters
+		print(pd.read_csv("New Entry"))
+		
+		output-
+		    a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		**************
+		   Unnamed: 0   a   b   c   d
+		0           0   0   1   2   3
+		1           1   4   5   6   7
+		2           2   8   9  10  11
+		3           3  12  13  14  15
+		
+		
+	>	import pandas as pd
+		df = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/example")
+		print(df)
+		print("**************")
+		df.to_csv("New Entry",index=False)
+		print(pd.read_csv("New Entry"))
+		
+		output-
+		    a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		**************
+			a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		
+		
+	> Reading data from excel - one thing to be taken care of is that pandas can only read data and not images, macros or graphs. It can cause pandas to fail
+		import pandas as pd
+		df = pd.read_excel("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/Excel_Sample.xlsx")
+		print(df)
+		
+		output-
+		    a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		
+	
+	> Writing to a excel file, new file will be created
+		import pandas as pd
+		df = pd.read_excel("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/Excel_Sample.xlsx")
+		df.to_excel("NewEntry.xlsx",sheet_name="master")
+		print(pd.read_excel("NewEntry.xlsx"))
+		
+		output-
+		   Unnamed: 0   a   b   c   d
+		0           0   0   1   2   3
+		1           1   4   5   6   7
+		2           2   8   9  10  11
+		3           3  12  13  14  15
+		
+		
+	> Reading from HTML
+		Pandas read_html function will read tables off of a webpage and return a list of DataFrame objects
+		data = df = pd.read_html('http://www.fdic.gov/bank/individual/failed/banklist.html')
+		print(type(data))	---------> the data from HTML is stored in the form of list, so what pandas has done is that it has stored every table on tha page into list of dataframes
+		print(data[0])		---------> Hence, we retrieved the value from the 0th element
+		
+	
+	> Writing and reading from SQL
+		from sqlalchemy import create_engine
+		import pandas as pd
+		df = pd.read_excel("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/03-Python-for-Data-Analysis-Pandas/Excel_Sample.xlsx")
+		print(df)
+		engine = create_engine("sqlite:///:memory:")
+		df.to_sql('my_table',engine)
+		sqldf = pd.read_sql("my_table",con=engine)
+		print(sqldf)
+		
+		output-
+		    a   b   c   d
+		0   0   1   2   3
+		1   4   5   6   7
+		2   8   9  10  11
+		3  12  13  14  15
+		   index   a   b   c   d
+		0      0   0   1   2   3
+		1      1   4   5   6   7
+		2      2   8   9  10  11
+		3      3  12  13  14  15
+		
+	
+	> But its highly recommended that you dont use pandas to read from sql, instead use libraries specific to a particular database
+	The pandas.io.sql module provides a collection of query wrappers to both facilitate data retrieval and to reduce dependency on DB-specific API. Database abstraction is provided by SQLAlchemy if installed. In addition you will need a driver library for your database. Examples of such drivers are psycopg2 for PostgreSQL or pymysql for MySQL. For SQLite this is included in Python’s standard library by default. You can find an overview of supported drivers for each SQL dialect in the SQLAlchemy docs.
+
+	If SQLAlchemy is not installed, a fallback is only provided for sqlite (and for mysql for backwards compatibility, but this is deprecated and will be removed in a future version). This mode requires a Python database adapter which respect the Python DB-API.
+
+	See also some cookbook examples for some advanced strategies.
+
+	The key functions are:
+
+	read_sql_table(table_name, con[, schema, ...])
+	Read SQL database table into a DataFrame.
+	read_sql_query(sql, con[, index_col, ...])
+	Read SQL query into a DataFrame.
+	read_sql(sql, con[, index_col, ...])
+Read SQL query or database table into a DataFrame.
+DataFrame.to_sql(name, con[, flavor, ...])
+Write records stored in a DataFrame to a SQL database.
+	
