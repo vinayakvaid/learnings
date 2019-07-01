@@ -1,0 +1,12 @@
+Introduction
+	Matplotlib is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. Matplotlib can be used in Python scripts, the Python and IPython shells, the Jupyter notebook, web application servers, and four graphical user interface toolkits.
+
+ 
+	Matplotlib tries to make easy things easy and hard things possible. You can generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc., with just a few lines of code. For examples, see the sample plots and thumbnail gallery.
+
+	For simple plotting the pyplot module provides a MATLAB-like interface, particularly when combined with IPython. For the power user, you have full control of line styles, font properties, axes properties, etc, via an object oriented interface or via a set of functions familiar to MATLAB users.
+	
+		> Matplotlib is the most popular plotting library for python
+		> It gives you control over every aspect of a figure
+		> It was designed to have a similar feel to Matlab's graphical plotting
+		> It works very well with Pandas and Numpy
