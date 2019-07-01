@@ -1,25 +1,48 @@
 SF Salaries Solutions
 
-import pandas as pd
-sal = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/04-Pandas-Exercises/Salaries.csv")
-print(sal.head())
-print(sal.info())
-print(sal["BasePay"].mean())
-print(sal["OvertimePay"].max())
-print(sal[ sal["EmployeeName"] == "JOSEPH DRISCOLL" ]["JobTitle"])
-print(sal[ sal["EmployeeName"] == "JOSEPH DRISCOLL" ]["TotalPayBenefits"])
-print(sal[ sal["TotalPayBenefits"] == sal["TotalPayBenefits"].max()])
-print(sal[ sal["TotalPayBenefits"] == sal["TotalPayBenefits"].min()])
-print(sal.groupby("Year").mean()["BasePay"])
-print(sal["JobTitle"].nunique())
-print(sal["JobTitle"].value_counts().head(5))
-print(sum(sal[ sal["Year"] ==2013 ]["JobTitle"].value_counts() == 1))
-def checkChief(title):
-    if "chief" in title.lower().split():
-        return True
-    else:
-        return False
-print(sum(sal["JobTitle"].apply(checkChief)))
-sal["title_len"] = sal["JobTitle"].apply(len)
-print(sal[["TotalPayBenefits","title_len"]].corr())
+	import pandas as pd
+	sal = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/04-Pandas-Exercises/Salaries.csv")
+	print(sal.head())
+	print(sal.info())
+	print(sal["BasePay"].mean())
+	print(sal["OvertimePay"].max())
+	print(sal[ sal["EmployeeName"] == "JOSEPH DRISCOLL" ]["JobTitle"])
+	print(sal[ sal["EmployeeName"] == "JOSEPH DRISCOLL" ]["TotalPayBenefits"])
+	print(sal[ sal["TotalPayBenefits"] == sal["TotalPayBenefits"].max()])
+	print(sal[ sal["TotalPayBenefits"] == sal["TotalPayBenefits"].min()])
+	print(sal.groupby("Year").mean()["BasePay"])
+	print(sal["JobTitle"].nunique())
+	print(sal["JobTitle"].value_counts().head(5))
+	print(sum(sal[ sal["Year"] ==2013 ]["JobTitle"].value_counts() == 1))
+	def checkChief(title):
+		if "chief" in title.lower().split():
+			return True
+		else:
+			return False
+	print(sum(sal["JobTitle"].apply(checkChief)))
+	sal["title_len"] = sal["JobTitle"].apply(len)
+	print(sal[["TotalPayBenefits","title_len"]].corr())
 
+Ecommerce Purchases Solutions
+
+	import numpy as np
+	import pandas as pd
+	desired_width=320
+	pd.set_option('display.width', desired_width)
+	np.set_printoptions(linewidth=desired_width)
+	pd.set_option('display.max_columns',15)
+	ecom = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/04-Pandas-Exercises/Ecommerce Purchases")
+	print(ecom.head(5))
+	print(ecom.info())
+	print(ecom["Purchase Price"].mean())
+	print(ecom["Purchase Price"].min())
+	print(ecom["Purchase Price"].max())
+	print(ecom[ ecom["Language"] == "en" ].count())
+	print(ecom[ ecom["Job"] =="Lawyer" ].info())
+	print(ecom[ (ecom["AM or PM"] == "AM") | (ecom["AM or PM"] == "PM")]["AM or PM"].value_counts())
+	print(ecom["Job"].value_counts().head(5))
+	print(ecom[ ecom["Lot"] == "90 WT" ]["Purchase Price"])
+	print(ecom[ ecom["Credit Card"] == 4926535242672853 ]["Email"])
+	print(ecom[ (ecom["CC Provider"] == "American Express") & (ecom["Purchase Price"] > 95)].count())
+	print(sum(ecom["CC Exp Date"].apply(lambda x: x.split("/")[1] == "25")))
+	print(ecom["Email"].apply(lambda x: x.split("@")[1]).value_counts().head(5))
