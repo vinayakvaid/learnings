@@ -6,6 +6,19 @@ Introduction
 
 	For simple plotting the pyplot module provides a MATLAB-like interface, particularly when combined with IPython. For the power user, you have full control of line styles, font properties, axes properties, etc, via an object oriented interface or via a set of functions familiar to MATLAB users.
 	
+	Matplotlib is the "grandfather" library of data visualization with Python. It was created by John Hunter. He created it to try to replicate MatLab's (another programming language) plotting capabilities in Python. So if you happen to be familiar with matlab, matplotlib will feel natural to you.
+
+	It is an excellent 2D and 3D graphics library for generating scientific figures.
+
+	Some of the major Pros of Matplotlib are:
+
+	Generally easy to get started for simple plots
+	Support for custom labels and texts
+	Great control of every element in a figure
+	High-quality output in many formats
+	Very customizable in general
+	Matplotlib allows you to create reproducible figures programmatically. Let's learn how to use it! Before continuing this lecture, I encourage you just to explore the official Matplotlib web page: http://matplotlib.org/
+	
 		> Matplotlib is the most popular plotting library for python
 		> It gives you control over every aspect of a figure
 		> It was designed to have a similar feel to Matlab's graphical plotting
