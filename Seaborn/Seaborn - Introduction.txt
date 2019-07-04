@@ -1,2 +1,6 @@
 Introduction
 	> Seaborn is a statistical plotting library built on top of Matplotlib
+	> It has beautiful deafult styles
+	> It is also designed to work very well with Pandas dataframe objects
+	
+	Visit - http://seaborn.pydata.org/ to get better understanding of what seaborn is capable of doing esp http://seaborn.pydata.org/api.html to see various plots and their description.
