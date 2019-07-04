@@ -1,0 +1,2 @@
+Introduction
+	> Seaborn is a statistical plotting library built on top of Matplotlib
