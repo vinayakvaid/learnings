@@ -1,0 +1,57 @@
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+sns.jointplot(x="fare",y="age",data=titanic)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+sns.distplot(titanic["fare"],kde=False,color="red",bins=30)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+sns.boxplot(x="class",y="age",data=titanic)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+sns.swarmplot(x="class",y="age",data=titanic)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+sns.countplot(x="sex",data=titanic)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+tt = titanic.corr()
+sns.heatmap(tt)
+plt.show()
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+titanic = sns.load_dataset("titanic")
+sns.set_style("whitegrid")
+p = sns.FacetGrid(data=titanic,col="sex")
+p.map(plt.hist,"age")
+plt.show()
