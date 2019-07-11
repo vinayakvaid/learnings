@@ -1,0 +1,62 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+df3.plot(kind="scatter",x="a",y="b",figsize=(12,3),color="red")
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+df3["a"].plot.hist(bins=25)
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+df3["a"].plot.hist(bins=25,alpha=0.5)
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+df3[["a","b"]].plot.box()
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+df3["d"].plot.kde()
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+df3["d"].plot.kde(ls="--",lw=3)
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+df3.ix[:30,].plot.area() or df3.head(100).plot.area(alpha=0.5)
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df3 = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/07-Pandas-Built-in-Data-Viz/df3.csv")
+plt.style.use("ggplot")
+f=plt.figure()
+df3.ix[:30,].plot.area(alpha=0.5)
+plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+plt.show()
