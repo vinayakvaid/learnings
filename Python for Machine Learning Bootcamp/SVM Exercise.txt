@@ -1,0 +1,42 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split,GridSearchCV
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report,confusion_matrix
+
+iris = sns.load_dataset("iris")
+print(iris.info())
+
+
+sns.pairplot(data=iris,hue="species",palette="Dark2")
+
+plt.figure(num=2)
+setosa = iris[iris["species"] == "setosa"]
+sns.kdeplot(data=setosa["sepal_width"],data2=setosa["sepal_length"],cmap="plasma",shade=True,shade_lowest=False)
+
+
+X = iris[["sepal_length","sepal_width","petal_length","petal_width"]]
+y = iris["species"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30)
+
+
+model = SVC()
+model.fit(X_train,y_train)
+model_pred = model.predict(X_test)
+print(classification_report(y_test,model_pred))
+print(confusion_matrix(y_test,model_pred))
+
+
+param_grid = {"C":[0.01,0.1,1,10,50,100,500,1000],"gamma":[0.0001,0.001,0.01,0.1,1]}
+grid_model = GridSearchCV(SVC(),param_grid,verbose=10)
+grid_model.fit(X_train,y_train)
+print(grid_model.best_params_)
+print(grid_model.best_estimator_)
+print(grid_model.best_score_)
+grid_pred = grid_model.predict(X_test)
+print(classification_report(y_test,model_pred))
+print(confusion_matrix(y_test,model_pred))
+
+plt.show()
