@@ -1,0 +1,52 @@
+def clusters(val):
+    if val == "Yes":
+        return 1
+    else:
+        return 0
+
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.metrics import classification_report,confusion_matrix
+
+data = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/17-K-Means-Clustering/College_Data.csv",index_col=0)
+print(data.head())
+print()
+print(data.info())
+print()
+
+plt.figure(num=1)
+sns.scatterplot(x="Room.Board",y="Grad.Rate",data=data,hue="Private")
+
+plt.figure(num=2)
+sns.scatterplot(x="F.Undergrad",y="Outstate",data=data,hue="Private")
+
+fc = sns.FacetGrid(data=data,hue="Private",palette="coolwarm")
+fc = fc.map(plt.hist,"Outstate",stacked=True,bins=20,alpha = 0.5)
+fc = fc.add_legend()
+
+fc1 = sns.FacetGrid(data=data,hue="Private")
+fc1 = fc1.map(plt.hist,"Grad.Rate",stacked=True,bins=20,alpha = 0.5)
+fc1 = fc1.add_legend()
+
+print(data[data["Grad.Rate"]>100])
+print()
+
+data["Grad.Rate"]["Cazenovia College"] = 100
+
+kmeans = KMeans(n_clusters=2,max_iter=600)
+kmeans.fit(data.drop("Private",axis=1))
+print(kmeans.cluster_centers_)
+print()
+
+data["Clusters"] = data["Private"].apply(clusters)
+print(data.head(22))
+print()
+
+print(classification_report(data["Clusters"],kmeans.labels_))
+print()
+print(confusion_matrix(data["Clusters"],kmeans.labels_))
+
+plt.show()
