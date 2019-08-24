@@ -1,0 +1,43 @@
+Every algorithm is exposed in scikit-learn via an "Estimator".
+First you will import the model, such as-
+
+from sklearn.Family import Model
+
+For example-
+
+from sklearn.linear_model import LinearRegression
+
+Estimator parameters - All the parameters of an estimator can be set when it is instantiated, and have suitable default values.
+For example-
+model = LinearRegression(normalize=True)
+print(model)
+
+Once you have your model created with your parameters, it is time to fit your model on some data. But remember, to split your data into a training set and test set.
+
+Now we have split the data, we can train/fit our model on the training data. This is done through the model.fit() method.
+model.fit(X_train,y_train)
+
+Now the model has been fit and trained on the training data and the model is ready to predict lablels oe values on the test set.
+
+We can get predicted values using the predict method.
+predictions = model.predict(X_test)
+
+We can then evaluate our model by comparing our predictions to the correct values and the method of evaluation depends on the machine learning algorithm we are using such as regression, classification, clustering ,etc.
+
+
+Scikit-learn strived to have uniform interface across all methods. Given the scikit-learn estimator object named model, following methods are available-
+Available in all estimators-
+> model.fit() - fit training data
+> for supervised learning, it accepts two arguments. .fit(X,y)
+> for unsupervised learning, it accepts one argument .fit(X)
+
+Available in  supervised estimators
+> model.predict() - given a trained model, predict the label of a new set of data . this method accepts one argument, the new data X_new and returns the learned label for each object in the array.
+> model.predict_proba() - for classifcation problems, some estimators also provides this method which  returns the probability that a new observation has each categorical label. In this case, the label with the highest probability is returned by model.predict().
+> model.score() - for classification or regression problems, most estimators implement a score method. Scores are between 0 and 1, with a large score indicating a better fit.
+
+Available in unsupervised estimators
+> model.predict() - predict lables in clustering algorithms
+> model.transform() - given an unsupervised model, transform new data into the new basis. This also accepts one argument X_new and returns the new representation of the data based on the unsupervised model.
+> model.fit_transform() - some estimators implement this method which more effectively performs a fit and a transform  on the same input data.
+

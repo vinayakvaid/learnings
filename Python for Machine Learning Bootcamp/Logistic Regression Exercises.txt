@@ -1,0 +1,55 @@
+def clickedYesOrNo(col):
+    if col == 0:
+        return "Not Clicked"
+    elif col == 1:
+        return "Clicked"
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+ad_data = pd.read_csv("C:/Users/G01212601/Downloads/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/13-Logistic-Regression/advertising.csv")
+
+plt.figure(num=1)
+sns.distplot(ad_data["Age"],bins=30,kde=False).set_title("Histogram of Age")
+
+sns.jointplot(x="Area Income",y="Age",data=ad_data)
+
+sns.jointplot(x="Age",y="Daily Time Spent on Site",data=ad_data,kind="kde",color="red")
+# fg = sns.JointGrid(x="Daily Time Spent on Site",y="Age",data=ad_data)
+# fg = fg.plot(sns.scatterplot,sns.distplot)
+
+sns.jointplot(x="Daily Time Spent on Site",y="Daily Internet Usage",data=ad_data)
+
+yesOrNo = pd.DataFrame(ad_data["Clicked on Ad"].apply(clickedYesOrNo))
+yesOrNo.rename(columns={"Clicked on Ad":"Clicked Yes or No"},inplace=True)
+sns.pairplot(data=pd.concat([ad_data,yesOrNo],axis=1).drop(columns=["Clicked on Ad"],axis=1),hue="Clicked Yes or No")
+
+X = ad_data[["Daily Time Spent on Site","Age","Area Income","Daily Internet Usage","Male"]]
+y = ad_data["Clicked on Ad"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
+
+lr = LogisticRegression()
+lr.fit(X=X_train,y=y_train)
+predictions = lr.predict(X_test)
+
+# Printing predictions and y_test head
+print("*****Predictions head*****")
+print(pd.DataFrame(predictions).head())
+print()
+print("*****Y_test head*****")
+print(pd.DataFrame(y_test).head())
+print()
+
+print("*****Classification report*****")
+print(classification_report(y_true=y_test,y_pred=predictions))
+print()
+
+plt.show()

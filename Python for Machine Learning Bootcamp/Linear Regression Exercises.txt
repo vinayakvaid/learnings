@@ -1,0 +1,72 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import  metrics as met
+
+customers = pd.read_csv("C:/Users/G01212601/Downloads/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/11-Linear-Regression/Ecommerce Customers.csv")
+# print(customers.head())
+# print(customers.info())
+# print(customers.describe())
+
+#plt.figure(1)
+sns.jointplot(x="Time on Website",y="Yearly Amount Spent",data=customers)
+
+plt.figure(1)
+sns.jointplot(x="Time on App",y="Yearly Amount Spent",data=customers)
+
+plt.figure(2)
+sns.jointplot(x="Time on App",y="Length of Membership",data=customers,kind="hex")
+
+plt.figure(3)
+sns.lmplot(x="Yearly Amount Spent",y="Length of Membership",data=customers)
+
+# plt.figure(4)
+# sns.pairplot(data=customers)
+
+
+X = customers[["Avg. Session Length","Time on App","Time on Website","Length of Membership"]]
+y = customers["Yearly Amount Spent"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
+
+lm = LinearRegression()
+lm.fit(X_train,y_train)
+print()
+print("Intercept of model : " + str(lm.intercept_))
+print("Coefficients of the model : " + str(lm.coef_))
+print()
+
+predictions = lm.predict(X_test)
+print()
+print("**************************************************")
+print("y_test's head : ")
+print(pd.DataFrame(y_test).head())
+print()
+print("Predictions' head : ")
+print(pd.DataFrame(predictions).head())
+print("**************************************************")
+
+plt.figure(5)
+plt.scatter(x=y_test,y=predictions)
+
+mae = met.mean_absolute_error(y_test,predictions)
+print("Mean absolute error : " + str(mae))
+mse = met.mean_squared_error(y_test,predictions)
+print("Mean squared error : " + str(mse))
+rmse = np.sqrt(mse)
+print("Root mean squared error : " + str(rmse))
+explained_variance = met.explained_variance_score(y_test,predictions)
+
+plt.figure(6)
+sns.distplot(y_test-predictions)
+
+print()
+coeff_df = pd.DataFrame(lm.coef_,X.columns,columns=["Coefficeints"])
+print("Coefficient data frame : ")
+print("**************************************************")
+print(coeff_df)
+
+plt.show()
