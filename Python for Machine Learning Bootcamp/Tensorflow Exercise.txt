@@ -1,0 +1,67 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import tensorflow as tf
+from sklearn.metrics import classification_report,confusion_matrix
+
+note_data = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/22-Deep Learning/bank_note_data.csv")
+print("Some data exploration : ")
+print("Head of data :")
+print(note_data.head()),print()
+print("Basic info about data :")
+print(note_data.info()),print()
+
+# Some basic data visualisation
+# plt.figure(num=1)
+# sns.countplot(x="Class",data=note_data)
+#
+# sns.pairplot(data=note_data,hue="Class")
+
+# Scaling our data
+X = note_data.drop("Class",axis=1)
+y = note_data["Class"]
+scaler = StandardScaler()
+scaler.fit(X)
+scaled_X = pd.DataFrame(scaler.transform(X),columns=X.columns)
+print("Head of scaled data :")
+print(scaled_X.head()),print()
+
+# Doing train test split
+X_train, X_test, y_train, y_test = train_test_split(scaled_X, y, test_size=0.30)
+
+# Creating feature columns
+feat_columns = []
+for col in X.columns:
+    feat_columns.append(tf.feature_column.numeric_column(col))
+
+# Creating DNN classifier
+classifier = tf.estimator.DNNClassifier(hidden_units=[10,20,10],n_classes=2,feature_columns=feat_columns)
+
+# Creating input func
+input_func = tf.estimator.inputs.pandas_input_fn(x=X_train,y=y_train,batch_size=20,shuffle=True)
+
+# Training our classifier
+classifier.train(input_fn=input_func,steps=500)
+
+# Creating func for prediction
+prediction_func = tf.estimator.inputs.pandas_input_fn(x=X_test,shuffle=False)
+
+# Creating predictions
+initial_predictions = list(classifier.predict(input_fn=prediction_func))
+print("Checking first initial prediction :")
+print(initial_predictions[0]),print()
+
+# Creating final predictions
+final_predictions = []
+for pred in initial_predictions:
+    final_predictions.append(pred["class_ids"][0])
+
+# Evaluating model
+print("Classification report :")
+print(classification_report(y_test,final_predictions)),print()
+print("Confusion matrix :")
+print(confusion_matrix(y_test,final_predictions)),print()
+
+plt.show()
