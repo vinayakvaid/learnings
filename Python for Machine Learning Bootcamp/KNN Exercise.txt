@@ -1,0 +1,53 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix,classification_report
+
+project_data = pd.read_csv("E:/Py-DS-ML-Bootcamp-master/Refactored_Py_DS_ML_Bootcamp-master/14-K-Nearest-Neighbors/KNN_Project_Data")
+print(project_data.head())
+print(project_data.info())
+
+#sns.pairplot(data=project_data,hue="TARGET CLASS")
+
+X = project_data.drop("TARGET CLASS",axis=1)
+scaler = StandardScaler()
+scaler.fit(X)
+scaled_X = pd.DataFrame(scaler.transform(X),columns=X.columns)
+
+X_train, X_test, y_train, y_test = train_test_split(scaled_X, project_data["TARGET CLASS"], test_size=0.33, random_state=101)
+
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(X_train,y_train)
+predict_1 = knn.predict(X_test)
+
+print("Classification report :")
+print(classification_report(y_test,predict_1))
+print("Confusion matrix :")
+print(confusion_matrix(y_test,predict_1))
+
+# Choosing value of K
+error_rate = []
+for i in range(1,50):
+    knn = KNeighborsClassifier(n_neighbors=i)
+    knn.fit(X_train, y_train)
+    predict_i = knn.predict(X_test)
+    error_rate.append(np.mean(y_test != predict_i))
+
+plt.figure(figsize=(10,6))
+plt.plot(range(1,50),error_rate,color="blue",linestyle="--",marker="o",markerfacecolor="red",markersize=5)
+
+# taking k =37
+knn = KNeighborsClassifier(n_neighbors=37)
+knn.fit(X_train,y_train)
+predict_37 = knn.predict(X_test)
+
+print("Classification report :")
+print(classification_report(y_test,predict_37))
+print("Confusion matrix :")
+print(confusion_matrix(y_test,predict_37))
+
+plt.show()
