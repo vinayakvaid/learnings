@@ -1,0 +1,72 @@
+Python decimal module helps us in division with proper precision and rounding of numbers.
+	precision is limiting your whole answer to a particular set of digits
+	rounding off is related to only digits after decimal point
+	
+	Correcting Division with decimals
+			import decimal
+			print(decimal.Decimal(72)/ decimal.Decimal(7))  ---> 10.28571428571428571428571429
+		
+		as compared to
+			print(72/7) ---> 10.285714285714286
+		so the accuracy has improved by usage of Decimal class of decimal module
+		
+	
+	Controllling Precision for single operation
+	
+			import decimal
+
+			with decimal.localcontext() as ctx:
+				ctx.prec = 5 ---> prec attribute is for specifying precision
+				division = decimal.Decimal(72) / decimal.Decimal(7)
+				print(division) ---> 10.286
+
+			again = decimal.Decimal(72) / decimal.Decimal(7)
+			print(again) ---> 10.28571428571428571428571429
+			
+		so we have controlled precision for single operation because it will be applied to only the statements under with
+		
+	
+	Controllling Precision for complete program
+
+			import decimal
+
+			decimal.getcontext().prec = 3
+
+			division = decimal.Decimal(72) / decimal.Decimal(7)
+			print(division) ---> 10.3
+
+			again = decimal.Decimal(72) / decimal.Decimal(7)
+			print(again) ---> 10.3
+			
+		here we have controlled precision for the entire program
+		
+	Per-Instance Context
+	
+			import decimal
+
+			# Set up a context with limited precision
+			decimal.getcontext().prec = 5 ---> this is global assignment of context
+			c = decimal.getcontext().copy() ---> this is locally for particular instances
+			c.prec = 3
+
+			# Create our constant
+			pi = c.create_decimal('3.14152344')
+
+			# The constant value is rounded off
+			print('PI:', pi) ---> PI: 3.14
+
+			# The result of using the constant uses the global context
+			print('RESULT:', decimal.Decimal('2.01') * pi) ---> RESULT: 6.3114
+		
+	Rounding the numbers
+	
+			import decimal
+			#Can be rounded to 13.48 or 13.49
+			rounded = round(13.485, 2)
+			print(rounded) ---> by default decimal, rounds down but it can be changed as below
+
+			print(decimal.Decimal(rounded).quantize(decimal.Decimal('0.00'), rounding=decimal.ROUND_UP))
+	
+	You can also get the default context set but the decimal module in its methods and classes
+		import decimal
+		print(decimal.getcontext())

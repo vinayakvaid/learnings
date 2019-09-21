@@ -1,0 +1,1061 @@
+Lecture 38 :
+	st = "Print only the words that start with s in this statement" ----> Correct, split() by default splits by whitspaces and if we want case insensitive comparisn, then we can user lower(), we can also use indexing
+	for word in st.split(" "):
+		if (word[0:1] == "s"):    -------> if (word[0].lower() == "s"):
+			print(word)
+	
+	
+	for num in range(0,11):  ----> for num in range(0,11,2) better way to use step
+    if(num%2 ==0):
+        print(num)
+
+		
+	lis = [num for num in range(1,51) if num%3 ==0]
+	print(lis)
+
+	
+	st = "Print every word in this sentence that has an even number of letter"
+	lis = st.split(" ")
+	newSt = ""
+	for letter in lis:
+		if(len(letter)%2 == 0):
+			letter = "even!"
+		if(len(newSt) == 0):
+			newSt = letter
+		else:
+			newSt = newSt + " " + letter
+	print(newSt)
+		
+		
+	for num in range(1,101):
+		if (num % 15 == 0):
+			print("FizzBuzz")
+		elif(num%3 == 0):
+			print("Fizz")
+		elif(num%5 == 0):
+			print("Buzz")
+		else:
+			print(num)
+			
+			
+	st = "Create a list of the first letters of every word in this string"    ----> [word[0] for word in st.split()]
+	lis = st.split(" ")
+	myList = [str[0:1] for str in lis]
+	print(myList)
+	
+Lecture 44 :
+
+	def lesser_of_two_evens(a,b):
+		if (a%2 == 0) and (b%2 == 0):
+			return min((a,b))
+		else:
+			return max((a,b))
+			
+			
+	def animal_crackers(stng):
+		st = ""															words = stng.split()
+		for word in stng.split():										return words[0][0] == words[1][0]
+			st = st + word[0]
+		if (st[0] == st[1]):
+			return True
+		else:
+			return False
+			
+			
+	def old_macdonald(name):
+		return name[0].upper() + name[1:3] + name[3].upper() + name[4:]
+		
+
+	def master_yoda(sentence):
+		lis = sentence.split()
+		lis.reverse()						reverse_lis = lis[::-1]
+		return " ".join(lis)
+		
+
+	def almost_there(num):
+		return (100 - 10) <= num <= (100 + 10) or (200 - 10) <= num <= (200 + 10)
+		
+
+	def has_33(nums):
+		for index, value in enumerate(nums):						for i in range(0,len(nums) -1):
+			if (index != len(nums) - 1):								if nums[i:i+2] == [3,3]:
+				if (value == 3):											return True
+					return (value == nums[index + 1])
+		return False
+				
+				
+	def paper_doll(text):
+		st = ""
+		for l in text:
+			st = st + l*3
+		return st
+
+		
+	def blackjack(a,b,c):
+		if (a+b+c) <= 21:
+			return a+b+c
+		elif (a+b+c) <= 31 and 11 in (a,b,c):
+			return sum((a,b,c)) - 10
+		else:
+			return "BUST"
+			
+			
+	def summer_69(arr):
+		if 6 in arr and 9 in arr and (arr.index(6)< arr.index(9)):
+			for i in range(arr.index(6), (arr.index(9) + 1)):
+				arr[i] = 0
+			summer_69(arr)
+		print(arr)
+		return sum(arr)
+		
+		
+	def spy_game(nums):
+		l=[]
+		if 0 in nums and 7 in nums and (nums.index(0) < nums.index(7)):
+			for index,value in enumerate(nums):
+				if value == 0:
+					l.append(index)
+
+			if nums.index(7) > l[0] and nums.index(7) > l[1]:
+				return True
+		else:
+			return False
+			
+		Alternative good solution :
+			def spy_game(nums):
+				code = [0,0,7,'x']
+				for num in nums:
+					if num == code[0]:
+						code.pop(0)   # code.remove(num) also works
+				   
+				return len(code) == 1
+			
+				
+	def count_primes(num):
+		count = 0
+		for i in range(2, num + 1):
+			divisible = False
+			for j in range(2,i):
+				if i%j == 0:
+					divisible = True
+					break
+			if not divisible:
+				count = count + 1
+		return count
+	
+	
+Lecture 51 :
+
+	def vol(rad):
+		return (4/3) * 3.14 * (rad**3)
+		
+	
+	def ran_check(num,low,high):
+		if num in range(low, high + 1):
+			return True
+			
+
+	def up_low(stng):
+		upper_case = 0
+		lower_case = 0
+		for letter in stng:
+			if (letter.isupper()):
+				upper_case = upper_case + 1
+			elif (letter.islower()):
+				lower_case = lower_case + 1
+		print("Original String : " + stng)
+		print("No. of Upper case characters : {}".format(upper_case))
+		print("No. of Lower case characters : {}".format(lower_case))
+		
+		
+	def unique_list(lst):
+		new_list = []
+		for num in lst:
+			if num not in new_list:
+				new_list.append(num)
+		return new_list
+		
+
+	def multiply(numbers):
+		result = 1
+		for num in numbers:
+			result = result * num
+		return result
+		
+		
+	def palindrome(s):                                                     	# A palindrome is word, phrase, or sequence that reads the same backward as forward
+		if (len(s)%2 == 0):													s = s.replace(' ','')   #replacing spaces with no space
+			return s[:int(len(s)/2)] == s[int(len(s)/2):][::-1]				return s == s[::-1] 
+		else:
+			return s[:int(len(s)/2)] == s[int(len(s)/2) + 1:][::-1]
+
+			
+	import string                          # Pangrams are words or sentences containing every letter of the alphabet at least once. For example : "The quick brown fox jumps over the lazy dog"
+	def ispangram(str1, alphabet=string.ascii_lowercase):  
+		alphaset = set(alphabet)  
+		return alphaset <= set(str1.lower())
+		
+		
+Milestone Project 1 :
+
+	import random
+
+
+	# Function to display board along with choices
+	def display_board(lst):
+		print("  |   |")
+		print("{} | {} | {}".format(lst[6], lst[7], lst[8]))
+		print("  |   |")
+		print("---------")
+		print("  |   |")
+		print("{} | {} | {}".format(lst[3], lst[4], lst[5]))
+		print("  |   |")
+		print("---------")
+		print("  |   |")
+		print("{} | {} | {}".format(lst[0], lst[1], lst[2]))
+		print("  |   |")
+
+
+	def player_input(player1_name, player2_name):
+
+		player1_choice = (input(player1_name + " , Pick a marker 'X' or 'O' : ")).upper()
+
+		# Checking the input is correct or not
+		while player1_choice not in ["X", "O"]:
+			player1_choice = (input(player1_name + " , Pick a marker 'X' or 'O' : ")).upper()
+
+		# Assigning marker to player 2
+		if player1_choice == "X":
+			choice_dict = {"player1_choice": "X", "player2_choice": "O"}
+		else:
+			choice_dict = {"player1_choice": "O", "player2_choice": "X"}
+		print("{} will play with '{}' and {} will play with '{}' .".format(player1_name, choice_dict["player1_choice"],
+																		 player2_name, choice_dict["player2_choice"]))
+		return {player1_name: choice_dict["player1_choice"],player2_name: choice_dict["player2_choice"]}
+
+
+	def place_marker(board_input, marker, position):
+		board_input[position - 1] = marker
+		display_board(board_input)
+		return board_input
+
+
+	def win_check(board, mark, name):
+		print(" "*4)
+		won = False
+		if board[0] == board[1] == board[2] == mark:
+			won = True
+		elif board[3] == board[4] == board[5] == mark:
+			won = True
+		elif board[6] == board[7] == board[8] == mark:
+			won = True
+		elif board[0] == board[3] == board[6] == mark:
+			won = True
+		elif board[1] == board[4] == board[7] == mark:
+			won = True
+		elif board[2] == board[5] == board[8] == mark:
+			won = True
+		elif board[0] == board[4] == board[8] == mark:
+			won = True
+		elif board[2] == board[4] == board[6] == mark:
+			won = True
+		if won:
+			print("Yohoo!!!!")
+			print("Congrats!!! " + name + " has won the game.")
+			print("Thanks for playing 'Tic Tac Toe'.")
+			return True
+		else:
+			return False
+
+
+	def choose_first(player1_name, player2_name):
+		if random.randint(1, 100) % 2 == 0:
+			return [player2_name,player1_name]
+		else:
+			return [player1_name,player2_name]
+
+
+	def space_check(board, position):
+		if board[position - 1] == " ":
+			return True
+		else:
+			return False
+
+
+	def full_board_check(board):
+		if " " not in board:
+			return True
+		else:
+			return False
+
+
+	def player_choice(board, name):
+		choice = int(input(name + ", choose your next position : (1-9) "))
+		if space_check(board, choice):
+			return choice
+		else:
+			choice = int(input(name + " , this position is not free, choose some other position : (1-9) "))
+			return choice
+
+
+	def replay():
+		play_again_choice = str(input("Do you want to play again ? (Yes/No) : ")).upper()
+		if play_again_choice == "YES".upper():
+			start_game()
+			return True
+		else:
+			return False
+
+
+	def start_game():
+		# Start of game
+		print("Hey!! Welcome to Tic Tac Toe game.")
+
+		# Taking user input
+		player1_name = input("Enter player 1 name : ")
+		player2_name = input("Enter player 2 name : ")
+
+		# Taking user input for selecting markers
+		marker_choices = player_input(player1_name, player2_name)
+		# print(marker_choices)
+
+		first_player = choose_first(player1_name, player2_name)
+		print(first_player[0] + " will play first.")
+
+		# Initialising board input list
+		board_input = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+		display_board(board_input)
+
+		while not full_board_check(board_input):
+			choice = player_choice(board_input, first_player[0])
+			board_input = place_marker(board_input, marker_choices[first_player[0]], choice)
+			if win_check(board_input, marker_choices[first_player[0]], first_player[0]):
+				break
+
+			if not full_board_check(board_input):
+				choice = player_choice(board_input, first_player[1])
+				board_input = place_marker(board_input, marker_choices[first_player[1]], choice)
+				if win_check(board_input, marker_choices[first_player[1]], first_player[1]):
+					break
+		replay()
+		
+
+	start_game()
+
+
+Lecture 64:
+
+	class Line:
+
+		def __init__(self, coor1, coor2):
+			self.coor1 = coor1
+			self.coor2 = coor2
+
+		def distance(self):
+			x1, y1 = self.coor1					---- Tuple Unpacking
+			x2, y2 = self.coor2
+			return ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+
+		def slope(self):
+			return (self.coor2[1] - self.coor1[1])/(self.coor2[0] - self.coor1[0])
+			pass
+
+
+	coordinate1 = (3, 2)
+	coordinate2 = (8, 10)
+	li = Line(coordinate1, coordinate2)
+	print(li.distance())
+	
+	
+	class Cylinder:
+		pi = 3.14
+		def __init__(self, height=1, radius=1):
+			self.ht = height
+			self.rad = radius
+
+		def volume(self):
+			return Cylinder.pi * self.ht * self.rad * self.rad
+
+		def surface_area(self):
+			return (2 * Cylinder.pi * self.rad * self.ht) + (2 * Cylinder.pi * self.rad * self.rad)
+
+
+	c = Cylinder(2, 3)
+	print(c.volume())
+	print(c.surface_area())
+	
+	
+	class Account():
+
+		def __init__(self, owner, balance):
+			self.owner = owner
+			self.balance = balance
+			print("Hi " + self.owner + " , Welcome to LENA BANK!!")
+
+		def deposit(self, amount):
+			if amount > 0:
+				print("Amount to be deposited in the bank account : $" + str(amount))
+				print("Previous account balance : $" + str(self.balance))
+				self.balance += amount
+				print("Updated account balance : $" + str(self.balance))
+			else:
+				print("Amount to be deposited can't be negative or zero")
+
+		def withdraw(self, amount):
+			if amount > self.balance:
+				print("Funds unavailable, withdrawal asked : $" + str(amount) + " and balance in the account : $" + str(self.balance))
+			else:
+				print("Amount to be withdrawal from the bank account : $" + str(amount))
+				print("Previous account balance : $" + str(self.balance))
+				self.balance -= amount
+				print("Updated account balance : $" + str(self.balance))
+
+		def __str__(self):
+			return "Account owner :   " + self.owner + "\nAccount balance : $" + str(self.balance)
+
+
+	acc = Account("Jose", 2000)
+	print(acc)
+	print(acc.owner)
+	print(acc.balance)
+	acc.deposit(500)
+	acc.withdraw(1500)
+	acc.withdraw(1500)
+
+
+Lecture 72:
+	
+	try:
+		for i in ['a', 'b', 'c']:
+			print(i ** 2)
+	except TypeError:
+		print("Parameters must be integers!!")
+		
+		
+	try:
+		x = 5
+		y = 0
+
+		z = x/y
+	except ZeroDivisionError:
+		print("Division by zero is not possible!!")
+	finally:
+		print("All Done")
+		
+		
+	def ask():
+		while True:
+			try:
+				number = int(input("Please enter the number : "))
+			except ValueError:
+				print("An error occurred! Please try again")
+				continue
+			else:
+				print("Thank you, your number squared is " + str(number**2))
+				break
+
+	ask()
+	
+	
+Milestone Project 2 :
+
+
+	import random
+	suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+	ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
+			 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
+	values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10,
+			  'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11}
+
+	playing = True
+	player_hit_or_stand = True
+	player_name = ""
+
+
+	class Card():
+
+		def __init__(self, suit, rank):
+			self.suit = suit
+			self.rank = rank
+
+		def __str__(self):
+			return self.rank + " of " + self.suit
+
+
+	class Deck():
+
+		def __init__(self):
+			self.list_deck = []
+			for suit in suits:
+				for rank in ranks:
+					self.list_deck.append(Card(suit, rank))
+
+		def __str__(self):
+			return "Deck has been created and shuffled"
+
+		def deal(self):
+			self.shuffle_deck()
+			deal_card = self.list_deck[random.randint(0, len(self.list_deck) - 1)]
+			self.list_deck.remove(deal_card)
+			return deal_card
+
+		def shuffle_deck(self):
+			random.shuffle(self.list_deck)
+
+
+	class Hand():
+
+		def __init__(self):
+			self.player_cards = []
+			self.dealer_cards = []
+			self.player_value = 0
+			self.dealer_value = 0
+			self.aces = 0
+
+		def add_card(self, card, person):
+			if person == "player":
+				self.player_cards.append(card)
+				temp = 0
+				for card in self.player_cards:
+					temp = temp + values[card.rank]
+				self.player_value = temp
+
+			elif person == "dealer":
+				self.dealer_cards.append(card)
+				temp = 0
+				for card in self.dealer_cards:
+					temp = temp + values[card.rank]
+				self.dealer_value = temp
+
+		def adjust_for_card(self):
+			pass
+
+
+	class Chips():
+
+		def __init__(self, chips):
+			self.total = chips
+			self.bet = 0
+
+		def win_bet(self):
+			self.total = self.total + self.bet
+
+		def lose_bet(self):
+			self.total = self.total - self.bet
+
+
+	def take_bet(chips_obj):
+		while True:
+			try:
+				player_bet = int(input("Please enter your bet : "))
+			except ValueError:
+				print("Oops!! Please enter some integral value.")
+				continue
+			else:
+				if player_bet > chips_obj.total:
+					print("Oops!! Please enter bet value less than the total available chips value of " + str(
+							chips_obj.total))
+					continue
+				else:
+					chips_obj.bet = player_bet
+					break
+
+
+	def hit(deck_obj, hand_obj, person):
+		hand_obj.add_card(deck_obj.deal(), person)
+		# code to handle aces
+		pass
+
+
+	def hit_or_stand(deck_obj, hand_obj, person):
+		global player_hit_or_stand
+
+		player_choice = input("Do you want to 'Hit' or 'Stand' ?, Please specify : ").upper()
+		if player_choice == "HIT":
+			hit(deck_obj, hand_obj, person)
+		else:
+			player_hit_or_stand = False
+			print("You have decided to 'Stand', so now dealer will play his hand")
+
+
+	def show_some(player_obj, dealer_obj):
+		print()
+		print("Dealer has two cards with him, one of which is hidden and the other is:")
+
+		dealer_hearts = []; dealer_diamonds = []; dealer_spades = []; dealer_clubs = []
+		for card in dealer_obj.dealer_cards:
+			if card.suit == "Hearts":
+				dealer_hearts.append(card.rank)
+			elif card.suit == "Diamonds":
+				dealer_diamonds.append(card.rank)
+			elif card.suit == "Spades":
+				dealer_spades.append(card.rank)
+			elif card.suit == "Clubs":
+				dealer_clubs.append(card.rank)
+			break
+
+		# Printing the cards with dealer
+		print("Hearts -", end=" "), print_to_console(dealer_hearts)
+		print("Diamonds -", end=" "), print_to_console(dealer_diamonds)
+		print("Spades -", end=" "), print_to_console(dealer_spades)
+		print("Clubs -", end=" "), print_to_console(dealer_clubs)
+
+		print()
+		print(player_name + " has the following set of cards with him/her :")
+		player_hearts = []; player_diamonds = []; player_spades = []; player_clubs = []
+		for card in player_obj.player_cards:
+			if card.suit == "Hearts":
+				player_hearts.append(card.rank)
+			elif card.suit == "Diamonds":
+				player_diamonds.append(card.rank)
+			elif card.suit == "Spades":
+				player_spades.append(card.rank)
+			elif card.suit == "Clubs":
+				player_clubs.append(card.rank)
+
+		# Printing the cards with player
+		print("Hearts -", end=" "), print_to_console(player_hearts)
+		print("Diamonds -", end=" "), print_to_console(player_diamonds)
+		print("Spades -", end=" "), print_to_console(player_spades)
+		print("Clubs -", end=" "), print_to_console(player_clubs)
+
+		print(player_name + " has total value of cards : " + str(player_obj.player_value))
+		print()
+
+
+	def show_all(player_obj, dealer_obj):
+		print("Dealer has the following set of cards with him:")
+		dealer_hearts = []; dealer_diamonds = []; dealer_spades = []; dealer_clubs = []
+		for card in dealer_obj.dealer_cards:
+			if card.suit == "Hearts":
+				dealer_hearts.append(card.rank)
+			elif card.suit == "Diamonds":
+				dealer_diamonds.append(card.rank)
+			elif card.suit == "Spades":
+				dealer_spades.append(card.rank)
+			elif card.suit == "Clubs":
+				dealer_clubs.append(card.rank)
+
+		# Printing the cards with dealer
+		print("Hearts -", end=" "), print_to_console(dealer_hearts)
+		print("Diamonds -", end=" "), print_to_console(dealer_diamonds)
+		print("Spades -", end=" "), print_to_console(dealer_spades)
+		print("Clubs -", end=" "), print_to_console(dealer_clubs)
+		print("Dealer has total value of cards : "  + str(dealer_obj.dealer_value))
+
+		print()
+		print(player_name + " had the following set of cards with him/her :")
+		player_hearts = []; player_diamonds = []; player_spades = []; player_clubs = []
+		for card in player_obj.player_cards:
+			if card.suit == "Hearts":
+				player_hearts.append(card.rank)
+			elif card.suit == "Diamonds":
+				player_diamonds.append(card.rank)
+			elif card.suit == "Spades":
+				player_spades.append(card.rank)
+			elif card.suit == "Clubs":
+				player_clubs.append(card.rank)
+
+		# Printing the cards with player
+		print("Hearts -", end=" "), print_to_console(player_hearts)
+		print("Diamonds -", end=" "), print_to_console(player_diamonds)
+		print("Spades -", end=" "), print_to_console(player_spades)
+		print("Clubs -", end=" "), print_to_console(player_clubs)
+
+		print(player_name + " has total value of cards : " + str(player_obj.player_value))
+		print()
+
+
+	def print_to_console(rank_list):
+		for r in rank_list:
+			print(r, end=" | ")
+		print(" ")
+
+
+	def player_busts(player_obj):
+		if player_obj.player_value > 21:
+			print(player_name + " , you have lost the hand")
+			return False
+		else:
+			return True
+
+
+	def dealer_busts(dealer_obj):
+		if dealer_obj.dealer_value > 21:
+			print(player_name + " , congrats you have won the hand")
+			return False
+		else:
+			return True
+
+
+	def start_game():
+		print("******************************************")
+		print("*    Welcome to 'Blackjack' game !!!     *")
+		print("******************************************")
+		print()
+
+		global player_name
+		global playing
+		global player_hit_or_stand
+		player_name = input("Please enter your name : ")
+
+		while True:
+			try:
+				player_chips = int(input(player_name + " , please select the chips / money you "
+													   "want to play with (less than 5000) :"))
+				if player_chips > 5000 or player_chips < 0:
+					raise ValueError("Value should be in limits")
+			except ValueError:
+				print(player_name + " , please some enter permissible value")
+				continue
+			else:
+				break
+
+		chips_obj = Chips(player_chips)
+
+		while playing:
+			if chips_obj.total > 0:
+				deck = Deck()
+				player_hand_obj = Hand()
+				dealer_hand_obj = Hand()
+
+				deck.shuffle_deck()
+				take_bet(chips_obj)
+
+				dealer_hand_obj.add_card(deck.deal(), "dealer")
+				dealer_hand_obj.add_card(deck.deal(), "dealer")
+				player_hand_obj.add_card(deck.deal(), "player")
+				player_hand_obj.add_card(deck.deal(), "player")
+
+				show_some(player_hand_obj, dealer_hand_obj)
+				play_to_be_continued = True
+				player_hit_or_stand = True
+
+				while player_hit_or_stand:
+					if player_busts(player_hand_obj):
+						hit_or_stand(deck, player_hand_obj, "player")
+						if player_hit_or_stand:
+							show_some(player_hand_obj, dealer_hand_obj)
+					else:
+						chips_obj.lose_bet()
+						print(player_name + " , your total chips count is now : " + str(chips_obj.total))
+						print()
+						play_to_be_continued = False
+						break
+
+				if play_to_be_continued:
+					print()
+					show_all(player_hand_obj, dealer_hand_obj)
+					while dealer_hand_obj.dealer_value < 17:
+						print("Dealer will be getting his hand")
+						hit(deck, dealer_hand_obj, "dealer")
+						show_all(player_hand_obj, dealer_hand_obj)
+					if dealer_busts(dealer_hand_obj):
+						if player_hand_obj.player_value >= dealer_hand_obj.dealer_value:
+							chips_obj.win_bet()
+							print(player_name + " , congrats you have won the hand")
+							print(player_name + " , your total chips count is now : " + str(chips_obj.total))
+							print()
+						else:
+							chips_obj.lose_bet()
+							print(player_name + " , you have lost the hand")
+							print(player_name + " , your total chips count is now : " + str(chips_obj.total))
+							print()
+					else:
+						chips_obj.win_bet()
+						print(player_name + " , your total chips count is now : " + str(chips_obj.total))
+						print()
+
+				player_choice = (input("Do you want to play again ? Yes/No :")).upper()
+				if player_choice == "YES":
+					playing = True
+				else:
+					playing = False
+			else:
+				playing = False
+				print("Sorry, you have zero chips to play, 'Better luck next time!!'")
+
+
+	start_game()
+	print()
+	print("Thanks for playing 'Blackjack' game!! ")
+	
+	
+
+Lecture 84 
+
+	def gensquares(N):
+		for n in range(N):
+			yield n**2
+			
+
+	import random
+	def rand_num(low,high,n):
+		for n in range(n):
+			yield random.randint(low,high)
+			
+			
+	s = "hello"
+	s_iter = iter(s)
+	
+Lecture 102
+
+	print(bin(1024))
+	print(hex(1024))
+	
+	
+	print(round( 5.23222,2))
+	
+	
+	s = 'hello how are you Mary, are you feeling okay?'
+	print(s.islower())
+	
+	
+	s = 'twywywtwywbwhsjhwuwshshwuwwwjdjdid'
+	print(s.count("w"))
+	
+	
+	set1 = {2,3,1,5,6,8}
+	set2 = {3,1,7,5,6,8}
+	print(set1.difference(set2))
+	
+	
+	set1 = {2,3,1,5,6,8}
+	set2 = {3,1,7,5,6,8}
+	print(set1.union(set2))
+	
+	
+	print({x:pow(x,3) for x in range(5)})
+	
+
+	list1 = [1,2,3,4]
+	list1.reverse()
+	print(list1)
+	
+	list2 = [3,4,2,5,1]
+	list2.sort(reverse=False)
+	print(list2)
+	
+Final Capstone Project
+
+	Get value of pi till n decimal digits
+	
+		from decimal import Decimal, getcontext
+		getcontext().prec=50+1
+		def generate_pi(n):
+			return round(Decimal(22/7), n)
+			
+	
+	Find e to the Nth Digit 
+	
+		from math import e
+		from decimal import Decimal, getcontext
+		def calculate_e(n):
+			getcontext().prec = n + 1
+			return Decimal(e)/1
+
+
+		while True:
+			try:
+				digits = int(input("Up to how many digits do you want value of e (less than 20) : "))
+			except ValueError:
+				print("Incorrect value entered!!")
+			else:
+				if digits <= 20:
+					break
+				else:
+					print("Please enter value less than 20")
+					
+	
+	Fibonacci Sequence - 
+	
+		def generate_fibo(n):
+			first_num = 0
+			sec_num = 1
+			print(sec_num)
+			for a in range(n - 1):
+				sum = first_num + sec_num
+				print(sum)
+				first_num, sec_num = sec_num, sum
+
+
+		num = int(input("How many fibonacci series numbers do u want? "))
+		generate_fibo(num)
+		
+	
+	Find prime factors :
+	
+		def store_number(n, l):
+			loop = False
+			num_div = 0
+			for number in range(2, n + 1):
+				if n == 1:
+					break
+				if n%number == 0:
+					l.append(number)
+					loop = True
+					num_div = number
+					break
+			if loop:
+				store_number(int(n / num_div), l)
+			return l
+
+
+		def prime_numbers(n):
+			prime_boolean = False
+			for number in range(2, n):
+				if n%number == 0:
+					prime_boolean = True
+			if prime_boolean:
+				l = []
+				print("Number is not prime")
+				print("Factors are " + str(store_number(n, l)))
+			else:
+				print("Number is prime, so Factors are : " + str(1) + " and " + str(n))
+
+
+		num = int(input("Please enter the number? "))
+		prime_numbers(num)
+		
+		
+	Generating next prime numbers :
+	
+		print("The first prime number is 2")
+		n = 2
+		while True:
+			n = n + 1
+			prime_boolean = False
+			for number in range(2, n):
+				if n % number == 0:
+					prime_boolean = True
+			if not prime_boolean:
+				choice = input("Do you want to print next prime number? (y/n) ")
+				if choice[0].upper() == "Y":
+					print("The next prime number is " + str(n))
+					continue
+				else:
+					print("Thanks for using our service of generating prime numbers!!")
+					break
+			
+	
+	Cost of tile :
+
+		w_tile = 1.5
+		h_tile = 1
+
+		w_floor = 60
+		h_floor = 40
+		def calculate_cost(cost):
+			no_tile = (w_floor*h_floor) / (w_tile * h_tile)
+			print(no_tile * cost)
+
+		cost = int(input("Please enter the cost of tile : "))
+		calculate_cost(cost)
+		
+	
+	Change Return Program :
+	
+	
+		lis = []
+		def change_method(balance, p, n, d, q):
+			global lis
+			if str(balance) == "0":
+				pass
+			elif balance >= 25:
+				balance = balance - 25
+				q = q + 1
+				change_method(balance,p,n,d,q)
+			elif 24 > balance >= 10:
+				balance = balance - 10
+				d = d +1
+				change_method(balance,p, n, d, q)
+			elif 10 > balance >= 5:
+				balance = balance - 5
+				n = n +1
+				change_method(balance, p, n, d, q)
+			elif 5 > balance >= 1:
+				balance = balance - 1
+				p = p + 1
+				change_method(balance, p, n, d, q)
+			lis.append(q)
+			lis.append(d)
+			lis.append(n)
+			lis.append(p)
+			return lis
+
+		def calculate_change(cost, change):
+			balance = round((cost - change), 2)
+			# print(round(balance, 2))
+			print("Dollars : " + str(int(balance)))
+			# print(str(balance).split(".")[1])
+			l = change_method(int(str(balance).split(".")[1]), 0, 0, 0, 0)
+			print("Quarters : " + str(l[0]))
+			print("Dimes : " + str(l[1]))
+			print("Nickels : " + str(l[2]))
+			print("Pennies : " + str(l[3]))
+
+		cost = float(input("Please enter the cost: "))
+		change = float(input("Please enter the change: "))
+		if change <= cost:
+			calculate_change(cost, change)
+		else:
+			print("Invalid inputs, Change can not be greater than cost")
+			
+	
+	
+	Binary to Decimal and Back Converter :
+		
+		
+		def decimal_to_binary(num):
+			lis_num = []
+			print("The decimal number is " + str(num))
+			while int(num/2) != 0:
+				lis_num.append(int(num%2))
+				num = int(num/2)
+
+			lis_num.append(1)
+			lis_num.reverse()
+			print("Binary equivalent is " + str(lis_num))
+
+		def binary_to_decimal(num):
+			print("The binary number is " + str(num))
+			number = 0
+			i = 0
+			for n in range(len(str(num)) - 1, -1, -1):
+				number = number + ((2 ** n) * int((str(num)[i])))
+				i = i + 1
+			print("Decimal equivalent is " + str(number))
+
+		decimal_to_binary(2)
+		binary_to_decimal(110110111000111)
+		
+		
+	Alphabet Rangoli
+	
+		from string import ascii_lowercase
+		def print_rangoli(size):
+			alpha_list = list(ascii_lowercase)[:size]
+			center_line = [alpha_list[x] for x in range(size - 1, -1, -1)]
+			center_line.extend([alpha_list[x] for x in range(1, size)])
+			st = "-".join(center_line)
+			# print(center_line)
+			main_rev_lis = list()
+			for i in range(1, size):
+				lis = list()
+				lis.extend([center_line[x] for x in range(0,i)])
+				temp_lis = [lis[x] for x in range(0, len(lis)-1)]
+				temp_lis.reverse()
+				lis.extend(temp_lis)
+				main_rev_lis.append(lis)
+				print("-".join(lis).center(len(st),"-"))
+			print(st)
+			# print(main_rev_lis)
+			for l in reversed(main_rev_lis):
+				print("-".join(l).center(len(st),"-"))
+
+
+		if __name__ == '__main__':
+			n = int(input())
+			print_rangoli(n)
+			
+	

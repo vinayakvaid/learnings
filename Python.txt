@@ -1,0 +1,2135 @@
+tab - auto complete in jupyter notebook
+
+Basic Math operations
+
+3 % 2 ---- gives you remainder
+
+3 ** 2 ----- 3 power 2 gives 9
+
+3//2 ---- gives you interger division, ans is 1
+
+3/2 ---- gives you float division, ans is 1.5
+
+type() function returns the data type of the variable
+	e.g. a = 2.3
+	type(a) gives 
+	
+Strings in python
+	can use either single quote or double quote
+	has indexing and slicing concepts
+	indexing
+		index starts from 0
+		
+		also has concept of reverse string to get the last character from the string
+		hello[1] --- e
+		hello [-1] ----- o 
+	
+	slicing - same as subString in Java
+	syntax- [start:stop:step]
+		start - numerical index for starting slice
+		stop - index you will go upto (non exclusive)
+		step - size of jump you want to take
+		
+		ex:-
+		str ="abcdefghijk"
+		str[2:] - cdefghijk
+		str[:3] - abc
+		str[3:6] - def
+		str[::] - abcdefghijk
+		str[::2] - acegik
+		reverse string - str[::-1] kjihgfedcba
+		
+	Strings are immutable in python since it does not support item assignment
+		
+	Also, '+' is used for concatenation of strings - "h" + "w" ----- hw
+	'*' multiples the string - letter ='zx' , letter * 3 ---- zxzxzx
+		
+	injecting variables into strings in print statements - string interpolation
+		
+	Formatting print statements in strings
+		using .format()
+			print("The {} {} {}".format("fox","brown", "quick"))
+			We can also use indexes to print properly
+				print("The {2} {1} {0}".format("fox","brown", "quick")) ----> The quick brown fox
+			We can also assign keys to use them in our print statements
+				print("{salu} {name} {surName}".format(surName="Vaid", salu="Mr.", name="Vinayak")) ----> Mr. Vinayak Vaid
+			For float data types, we can also define the width(whitespaces bet variable and string) and precision value - syntax --> "{value:width.precision f}"
+				result = 100/33
+				print("using keys : The result is {r}".format(r=result)) ------> using keys : The result is 3.0303030303030303
+				print("using flaot formatting: The result is {r:10.6f}".format(r=result)) ----- > using flaot formatting: The result is   3.030303
+				print("using flaot formatting: The result is {r:1.6f}".format(r=result)) ----- > using flaot formatting: The result is 3.030303
+		using f-string literals
+			name = "Vinayak Vaid"
+			print(f"Hello, {name}") ----- > Hello, Vinayak Vaid
+			name = "Vinayak Vaid"
+			age = 27
+			print(f"Hello, {name} , your age is {age}") ----> Hello, Vinayak Vaid , your age is 27
+				
+			
+		print("this is string {}".format)
+	
+	len(String str) - function to check size of string
+	
+	The .join() method may be useful here. The .join() method allows you to join together strings in a list with some connector string. For example, some uses of the .join() method:
+	>>> "--".join(['a','b','c'])
+	>>> 'a--b--c'
+	
+	Text Alignment in python
+		width = 20
+		print("Hacker".ljust(width,"-")) ---> Hacker--------------
+		
+		print("Hacker".center(width,"-")) ---> -------Hacker-------
+		
+		print("Hacker".rjust(width,"-")) ---> --------------Hacker
+		
+		
+	
+	Escape Characters
+		\n - new line
+		\t - tab
+		
+	Lists in python
+		Lists are mutable, i.e their elements can be re assigned
+		Lists are ordered sequences that can hold a variety of object types
+		ex lis =[1,2,"vin",23.4]
+		They also support indexing and slicing like strings
+		
+		determine length of list - len(lis) -----> 4
+		lis[2] ----> 'vin', lis[1] ----> 2
+		lis[2:] -----> ["vin",23.4]
+		
+		we can do concatenation of lists as well
+		l=[234]
+		lis + l ----> [1,2,"vin",23.4,234]
+		
+		we can modify element in a list
+		lis[0] = "Zero" ---> ["Zero",2,"vin",23.4]
+		
+		Adding new element at the end of list using .append(variale) function -- doesnot return anything
+		lis.append("6") -----> ["Zero",2,"vin",23.4,6]
+		
+		Removing last element in a list, using pop() function -- returns the element
+		lis.pop() -----> ["Zero",2,"vin",23.4]
+		we can also give index position to pop a particular element from the list, default index is -1
+		lis.pop(0) -----> [2,"vin",23.4]
+		
+		.sort() function retuns nothing just sorts the list in place
+		l = ["a","f","t","k"]
+		l.sort()
+		print(l) ----> ['a', 'f', 'k', 't']
+		but li = l.sort() -----> li will be empty since it does not return None object (None is like null is java)
+		
+		Reversing a list using .reverse() function, it also returns None
+		l.reverse()
+		print(l) -----> ['k', 't', 'f', 'a']
+		
+		getting values using index in a nested list
+		l = [1,1,[1,2,3]]
+		print(l[2][2]) -----> 3
+		
+		diff bet append() and extend() in lists
+		append: Appends object at end
+		x = [1, 2, 3]
+		x.append([4, 5])
+		print (x) --- [1, 2, 3, [4, 5]]
+		extend: Extends list by appending elements from the iterable
+		x = [1, 2, 3]
+		x.extend([4, 5])
+		print (x) --- [1, 2, 3, 4, 5]
+		
+		* symbol is use to print the list elements in a single line with space
+		l = [1,2,3,4]
+		print(*l) ----> 1 2 3 4
+		
+		
+		
+	
+	Dictionanries in python
+		Unordered mappings for storing objects. this key-value pair allows users to quickly grab objects without needing to know the index location
+		
+		
+		
+		
+		my_dict = {'name':'Vinayak','surName':'Vaid'}
+		print(my_dict['name']) -----> Vinayak
+		
+		Dictionaries can also store other collection types such as list and dictionaries itself
+		my_dict = {'k1':123,'k2':[1,3,4,4],'k3':{'insideKey':'Inside dictionary'}}
+		print(my_dict['k3']) ------> {'insideKey': 'Inside dictionary'}
+		
+		Dictionaries are also immutable
+	
+	Tuples in python
+		These are similar to lists, they have one difference - immutability
+		Once an element is inside a tuple, it can not be re assigned.
+		We use paranthesis to declare tuples
+		They also have less number of methods associated with them as compared to lists
+		
+		.count() method - to count number of occurence of elements in tuple
+		t=('a','a','b')
+		print(t.count('a')) ----> 23
+		
+		.index() method - returns the index location of first occured element
+		t=('a','a','b')
+		print(t.index('a')) ---> 0
+		
+		When you need to pass objects in your program, u can use tuples because you want to make sure that objects does not change
+		
+	Sets in python
+		Unordered collections of unique elements
+		Meaning there will be only one representative of the same object, duplicay not allowed
+		
+		mySet = set()
+		mySet.add("Vinayak")
+		mySet.add("Vaid")
+		mySet.add("Vinayak")
+		print(mySet) ----> {'Vinayak', 'Vaid'}
+		
+		l =[1,1,2,3,4,5,5,6]
+		mySet = set(l)
+		print(mySet) ----> {1, 2, 3, 4, 5, 6}
+		
+		set('Mississipi') ----> {'i', 'p', 's', 'M'}
+		
+	Booleans in python
+		True and False
+		print(1>2) ----> False
+		
+	File I/O operations
+		Opening a text file
+		file = open("C:\\Users\\TDQO6OX\\Desktop\\try.txt")
+		
+		Reading file
+		contents=file.read()
+		
+		Closing text file
+		file.close()
+		
+	
+		Another way of opening file
+		with open("C:\\Users\\TDQO6OX\\Desktop\\try.txt", mode='r' or 'r') as file:  ----- no need to close if opening file like this
+			con = file.read()
+			print(con)
+		
+		Different modes of opening files
+			mode='r' - read only
+			mode='w' - write only (overwrite existing file or create new)
+			mode='a' - append only (will add on to file)
+			mode='r+' - reading and writing
+			mode='w+' - writing and reading (overwrites existing files or creates a new file)
+		
+		file.seek(0) ---> sets cursor at starting of file , used when using jupyter notebook
+		
+		print(file.readlines()) ---- reads file line by line and stores text in each line in a list -----> ['This is text file\n', 'Created by Vinayak Vaid\n', 'On Tuesday\n']
+		
+		
+		Appending text to file
+		with open("C:\\Users\\TDQO6OX\\Desktop\\try.txt", mode='a') as file:
+			file.write('\nIn 2018')
+			
+		Writing new file - this overwrites existing file or created one if already not there
+		with open("C:\\Users\\TDQO6OX\\Desktop\\try1.txt", mode='w') as file:
+			file.write('In 2018')
+		
+		
+		
+	Python comparison operators
+		a == b ---- equals, can be used for objects also and takes care of data type also
+		a != b ----- not equals
+		a < b ---- greater than
+		a > b ---- lesser than
+		a >= b greater than equal to
+		a <= b smaller than equal to
+	
+	Chaining comparison operators - Logical operators
+		We can use logical operators to combone comparisons
+			and
+			or 
+			not
+		1<2 and 2<3 -- true
+		1<2<3 --- true
+		
+		not keyword - returns the opposite boolean
+		print(not(1==1)) ---> False
+		
+	If, elif and Else statements
+		if 
+		elif
+		else
+		
+		Control flow syntax makes use of colons and identation (whitespaces)
+		This identation sets python apart from other programming languages
+		
+		i = 3455
+		if i == 2:
+			print("Value is 2")
+		elif i == 3:
+			print("Value is 3")
+		else:
+			print("Value is " + str(i))
+			
+	For Loops
+		l=[1,2,3]
+		for li in l:
+			print(li)
+			
+		for l in "Vinayak Vaid":
+			print(l)
+		output:
+			V
+			i
+			n
+			a
+			y
+			a
+			k
+			 
+			V
+			a
+			i
+			d
+			
+		myList=[(1,2),(3,4),(5,6)] ---- tuple unpacking
+		for (a,b) in myList:
+			print(a)
+			print(b)
+		output:
+			1
+			2
+			3
+			4
+			5
+			6
+			
+		Looping over reverse elements:
+			lis = [1,2,3,4,5,6,7]
+
+			for l in reversed(lis):
+				print(l)
+				
+			output:
+				7
+				6
+				5
+				4
+				3
+				2
+				1
+		
+		Iterating over dictionary
+			d={'k1':'1','k2':'2'} ----> gives you all the keys
+			for k in d:
+				print(k)
+				
+			output:
+				k1
+				k2
+			
+			d={'k1':'1','k2':'2'} ----> gives you both key and value
+			for k in d.items():
+				print(k)
+				
+			output:
+				('k1', '1')
+				('k2', '2')
+			
+			d={'k1':'1','k2':'2'} -----> just like tuple unpacking, gives value
+			for k,v in d.items():
+				print(v)
+				
+			output:
+				1
+				2
+				
+			d={'k1':'1','k2':'2'} ----> directly returns you the value
+			for value in d.values():
+				print(value)
+				
+			output:
+				1
+				2
+		
+		Looping with parameters
+			for i in range(0,10):
+				print(i)
+				
+			output:
+				0
+				1
+				2
+				3
+				4
+				5
+				6
+				7
+				8
+				9
+			
+			 
+			for i in range(0,5,2):    --- will jump in intervals of 2's
+				print(i) 
+			
+			output:
+				0
+				2
+				4
+				
+			for i in range(5,0,-1):  --- reversing for loop
+				print(i)
+			
+			output:
+				5
+				4
+				3
+				2
+				1
+	While Loops :
+		while loops will continue to execute block of code till a particular condition holds true
+		
+		Basic syntax-
+			while (your condition):
+				#your code
+				
+		Using while will else - 
+			while (your condition):
+				#your code
+			else:
+				# do something different
+		# x = x + 1 is same as x+=1
+		
+		i = 1             ----- example
+		while i <= 5:
+			if i % 2 == 0:
+				print(f"The current value of i is {i}")
+			else:
+				print("i is odd but value is " + str(i))
+			i = i + 1
+		
+	break,continue, pass:
+		break - brekas out of the current closest enclosing loop
+		continue - goes to the top of the closest enclosing loop
+		pass - does nothing at all
+		
+		example of pass - suppose in a for loop, we dont want anything to happen, so if we write like below, it will throw an error - SyntaxError: unexpected EOF while parsing,
+			l = [1,2,3]
+			for i in l:
+				# comment
+				
+		to avoid such scenarios, we can use pass because it does nothing at all like below -
+		
+			l = [1,2,3]
+			for i in l:
+				# comment
+				pass
+		example of continue - 
+			strng = "Vinayak"
+			for l in strng:
+				if l == "a":
+					continue
+				print(l)
+				
+			output :
+			V
+			i
+			n
+			y
+			k
+			
+	Useful Operators in Python:
+		range() function actually it's a generator:
+			for num in range(3): ------> output :0 1 2 prints numbers starting from 0 but not including 3
+				print(num)
+				
+			we can pass this range fucntion to list method and it will create a list of integers according to arguments specified
+				l = list(range(0,10)) -----> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+					print(l)
+					
+		enumerate() function : it is used in order to loop over words with indexes, returns a tuple
+			name = "Vinayak"
+			for letter in enumerate(name):
+				print(letter)
+			
+			output:
+			(0, 'V')
+			(1, 'i')
+			(2, 'n')
+			(3, 'a')
+			(4, 'y')
+			(5, 'a')
+			(6, 'k')
+			
+			for index,value in enumerate(name): ----> gives u both index and value
+		zip() function : it joins two or more lists and returns tuple
+			l1 = [1,2,3]
+			l2 = ["a","b","c"]
+			print(zip(l1,l2)) ---> returns '<zip object at 0x01DA0E90>' since zip is a generator, it only stores your result value at location, doesnt return as such
+			
+			l1 = [1,2,3]
+			l2 = ["a","b","c"]
+			for item in zip(l1,l2):
+				print(item)
+				
+			output:
+				(1, 'a')
+				(2, 'b')
+				(3, 'c')
+				
+			l1 = [1,2,3,4,5]
+			l2 = ["a","b","c"]
+			for item in zip(l1,l2):
+				print(item)
+				
+			output:   ------> extra values are removed after merging them into tuples
+				(1, 'a')
+				(2, 'b')
+				(3, 'c')
+			
+			if you want to store the output in some list:
+				l3 = list(zip(l1,l2))
+				print(l3) -----> returns you the list of tuples as [(1, 'a'), (2, 'b'), (3, 'c')]
+			for getting result in tuple :
+				l3 = tuple(zip(l1,l2))  returns you tuple of tuples ----> ((1, 'a'), (2, 'b'), (3, 'c'))
+				
+		in operator:
+			used in for loops as
+				for l in l1:
+				
+			it can also be used to check whether a particular element is present in list or tuple:
+				print(1 in (1,2,3)) ---> returns True
+				print(5 in (1,2,3)) ---> returns False
+		
+			works for strings also:
+				print("a" in " this is a work") --> True (its case sensitive checking)
+			
+			works for dictionaries also:
+				print("key" in {"key":234}) ---> True
+			
+			if you want to check key value :
+				d ={"key":234}
+				print(234 in d.values()) ---> True
+				
+				print(234 in d.keys()) ---> False
+			
+		min() function :
+			tells you the min value in list or tuple
+		
+		max() function :
+			tells you the maximun value in list or tuple
+			
+		random library :
+			to import library and its function:
+			from random import shuffle
+			
+			shuffle() function :
+				shuffles around any sort of list, returns nothing
+					l = [1,2,3,4,5,6,6,7,7,9]
+					shuffle(l)
+					print(l) ---> shuffles values in the list
+				
+			randint() function :
+				returns you a random integer between the limits, both included
+					from random import randint
+					print(randint(2,100)) ----> 4
+			
+			input function:
+				getting input from user, returns you string type, cast it into integer or float in you want that type of inputs
+					res = input("Enter a number ")
+					print(res)
+					
+	List Comprehensions:
+		this is a unique way of quickly creating a list with python. If you find yourself using a For loop along with .append() to create a list, list comprehensions are good alternatives.
+		
+			myList = []
+			for x in "Vinayak Vaid":
+				myList.append(x)
+			print(myList)
+			
+			output: ['V', 'i', 'n', 'a', 'y', 'a', 'k', ' ', 'V', 'a', 'i', 'd']
+			
+		the above code can be clubbed using list comprehension as below:
+			myList = [x for x in "Vinayak Vaid"]
+			print(myList)
+			
+			Output: same as above
+			
+			myList = [num for num in range(121,129)]
+			print(myList) -----> [121, 122, 123, 124, 125, 126, 127, 128]
+			
+		we can also do operations on the first variable as doubling the numbers :
+			myList = [num*2 for num in range(121,129)] ------> [242, 244, 246, 248, 250, 252, 254, 256]
+			
+		we can add if statements also :
+			myList = [num*2 for num in range(0,11) if num%2 ==0] ------> [0, 4, 8, 12, 16, 20] getting only even numbers
+			
+		using if-else together:
+			myList = [num*2 if num%2 ==0 else "ODD" for num in range(0,11) ]  ------> [0, 'ODD', 4, 'ODD', 8, 'ODD', 12, 'ODD', 16, 'ODD', 20]
+			
+		Note :- if you are using only if, then if will be placed at last in list comprehension and if you want to use both if-else, then the above way of writing is used
+		
+		We can also do nested for loops but readability is sacrificed :
+			lis=[]
+			for x in [1,2,3]:
+				for y in [1,10,100]:
+					lis.append(x*y)
+			print(lis)
+			
+			output:
+			[1, 10, 100, 2, 20, 200, 3, 30, 300]
+			
+			using list comprehension:
+			lis = [x*y for x in [1,2,3] for y in [1,10,100]] -----> same output as above
+			
+	
+	Methods and Functions:
+		help function gives you information about particular method , for example:
+			myList = [1,2,3,4,5]
+			help(myList.insert)
+			
+			if we run above code, output is 
+				Help on built-in function insert:
+				insert(...) method of builtins.list instance
+					L.insert(index, object) -- insert object before index
+			
+		Functions:
+			Functions allow us to create blocks of code that canbe easily exeucted many times, without needing to rewrite the entire block of code
+			
+			Creating function as below:-
+				def print_Hello(name):
+					print("Hello " + name)
+					
+				Calling function as below:-
+				print_Hello("Vinayak Vaid")  -----> Hello Vinayak Vaid
+			
+			
+				def print_Hello(name="Vin"):   		-------> provided default argument in case no argument is passed while function calling
+					"""
+					Prints the Hello followed by name      -----> this is doc string or information about the function
+					:param name: name
+					:return: Nothing
+					"""
+					print("Hello " + name)
+
+				print_Hello()   ----> Hello Vin
+				
+			Creating fucntions using return keyword:
+				def add_numbers(a =55,b=6):
+					return a + b
+				res = add_numbers(2,3)
+				print(res)
+		
+		Functional arguments - *args and **kwargs :
+			suppose we are not aware that how many arguments will be passed at run time to the function, we can make use of *args which says that whtever argument is passed, convert it to tuple and perform operations
+			we can also use *span or any other variable 
+				def add_numbers(*args):
+					print(args)
+					return sum(args)
+				print("Sum of above numbers is " + str(add_numbers(20,30,45,56.89)))
+			
+			output :
+				(20, 30, 45, 56.89)
+				Sum of above numbers is 151.89
+				
+			Just as args return back a tuple, kwargs return back a dictionary as below 
+				def get_info(**kwargs):
+					if "name" in kwargs:
+						print("The name is " + kwargs["name"])
+					elif "age" in kwargs:
+						print("The age is " + kwargs["age"])
+					else:
+						print("Invalid details asked")
+
+				get_info(age= "27")
+				
+			output:
+				The age is 27
+				
+			We can also combine args and kwargs as :
+				def get_info(*args,**kwargs):
+					print(args)
+					print(kwargs)
+					print("I would like to eat {} {}".format(args[1],kwargs["food"]))
+
+				get_info(2,5,6,snack="Sandwich",food="Pasta")
+				
+			output:
+				(2, 5, 6)
+				{'snack': 'Sandwich', 'food': 'Pasta'}
+				I would like to eat 5 Pasta
+
+		
+		Lambda Expressions, Map and Filter Functions:
+			lambda expressions are the way to quickly create anonymous functions, basically one time functions which you dont really name, you use them and then never reference again
+			
+			First we will see MAP built in function - it is used to map a particular fucntion to every iterable object, do not pass function name with () in map's arguments
+				def splicer(myString):
+					if len(myString)%2 == 0:
+						return "EVEN"
+					else:
+						return myString[len(myString) - 1]
+
+				my_nums = ["Vinayak","Vaid","is","india"]
+				print(list(map(splicer, my_nums)))
+				
+				output:
+					['k', 'EVEN', 'EVEN', 'a'] ----> it has applied splicer function to every iterable element
+			
+			FILTER function: it filters out the elements in iterable object based on the condition in the function, for filter to apply, the function which we are passing must return boolean
+			
+				def even(num):
+					return num%2 == 0
+
+				my_nums = [1,2,3,4,5,6,7,8]
+				print(list(filter(even, my_nums)))
+				
+				output:
+					[2, 4, 6, 8]   ----> it has filtered out the even numbers from the list
+					
+			LAMBDA expressions:
+				We can write the function for squaring the number as below as well
+					def square(num): return num**2
+					print(square(44))
+				
+				now we will be converting this into lambda expression by deleting the function name i.e. square, def keyword and return keyword:
+					
+					square = lambda num: num**2
+					print(square(44))
+					
+				lambda expressions come handy in conjunction with map and filter functions
+				
+					my_nums = [1,3,4,5,6,7,77]
+					print(list(map(lambda num : num **2,my_nums)))  ----> [1, 9, 16, 25, 36, 49, 5929]
+					
+					
+					my_nums = [1,2,3,4,5,6,7,8]
+					print(list(filter(lambda num : num%2 == 0,my_nums))) -----> [2, 4, 6, 8]
+					
+		Nested Statements and Scope:
+			
+			Variables in python follow LGEB rule for the scope
+				L: Local
+				G: Global
+				E: Enclosing
+				B: Built In
+					
+				L: Local — Names assigned in any way within a function (def or lambda), and not declared global in that function.
+
+				E: Enclosing function locals — Names in the local scope of any and all enclosing functions (def or lambda), from inner to outer.
+
+				G: Global (module) — Names assigned at the top-level of a module file, or declared global in a def within the file.
+
+				B: Built-in (Python) — Names preassigned in the built-in names module : open, range, SyntaxError,...
+				
+				Local Variables:
+					lambda num : num**2 ----> so num here is local to this lambda expression
+				Enclosing Function Variables:
+					name = "This is a global string"
+					def greet():
+						name = "Sammy"				# this is enclosing function variable
+						def hello():
+							print("Hello " + name)
+						hello()
+					greet()
+					
+					output : - Hello Sammy because it is following LGEB rule, if i had commented name="Sammy", then output had been Hello This is a global string
+					
+			Global keyword: whichsoever variable is assiged with 'global' keyword, it would mean that wtever value we change, will be changed globally, example below
+				
+				x = 50
+				def func(x):
+					print(f"Value of x is {x}")
+
+					# Local re-assignment of x
+					x = "NEW VALUE"
+					print(f"I have changed locally value of x to {x}")
+
+				func(x)
+				print(x)
+				
+				output:
+					Value of x is 50
+					I have changed locally value of x to NEW VALUE
+					50
+				
+				now using 'global' keyword
+				
+				x = 50
+				def func():
+					global x      ---- here what has happened is that it is referencing x which is declared globally and re assigning that x only
+					print(f"Value of x is {x}")
+
+					# Local re-assignment of x
+					x = "NEW VALUE"
+					print(f"I have changed locally value of x to {x}")
+
+				func()
+				print(x)
+				
+				output :
+					Value of x is 50
+					I have changed locally value of x to NEW VALUE
+					NEW VALUE
+
+Object Oriented Programming - Python
+	Object Oriented programming allows programmers to create their own objects tht have methods and attributes
+	Recall the methods of a list, tuple or dictionary
+	These methods act as fucntions that use information abt the object , as well as the object itself to return results or to change the current object
+	OOP allows users to creatw their own objects
+	OOP allows us to create code that is repeatable and organized
+	
+	Syntax:
+			
+			class NameOfClass():                  	objects are also known as class in python
+				def _init_(self,param1,param2):    	looks like a function but when inside class, it is known as method
+					self.param1 = param1
+					self.param2 = param2
+				
+				def some_method(self):
+					print(self.param1)
+					
+	Attributes and Class keyword:
+		
+		class Sample:
+			pass
+
+
+		my_sample = Sample()
+		print(type(my_sample))  ----->  	<class '__main__.Sample'>
+		
+
+		class Dog:
+			def __init__(self, breed):  -----> can be thought of constructor of a class
+				# Attribute of class
+				# We take in the argument and assign it using self.attribute_name
+				self.breed = breed
+				
+		my_dog = Dog(breed="pitbull")
+		print(type(my_dog))  -------> 			<class '__main__.Dog'>
+		print(my_dog.breed) --------> 			pitbull
+		
+		
+		class Dog:
+			def __init__(self, breed, name, spots):
+				self.breed = breed
+				self.name = name
+				# Expecting a boolean
+				self.spots = spots
+
+		my_dog = Dog(breed="pitbull",name="Tommy",spots=True)
+		print("Dog's name is " + my_dog.name + " and it's breed is " + my_dog.breed + " and it has spots = " + str(my_dog.spots))
+		
+		output : Dog's name is Tommy and it's breed is pitbull and it has spots = True
+		
+		
+	Class Object Attributes and Methods
+		
+		# Class Attributes
+		class Dog:
+			# Class object attribute, these will be same for any instance of class
+			legs = 4
+			def __init__(self, breed, name, spots):
+				self.breed = breed
+				self.name = name
+				# Expecting a boolean
+				self.spots = spots
+
+		my_dog = Dog(breed="pitbull",name="Tommy",spots=True)
+		print("Dog's name is " + my_dog.name + " and it's breed is " + my_dog.breed +
+			  " and it has spots = " + str(my_dog.spots) + " and has legs = " + str(my_dog.legs))
+		my_dog = Dog(breed="huskie",name="Sammy",spots=False)
+		print("Dog's name is " + my_dog.name + " and it's breed is " + my_dog.breed +
+			  " and it has spots = " + str(my_dog.spots) + " and has legs = " + str(my_dog.legs))
+		
+		output:
+			Dog's name is Tommy and it's breed is pitbull and it has spots = True and has legs = 4
+			Dog's name is Sammy and it's breed is huskie and it has spots = False and has legs = 4
+			
+			
+			
+		# methods in a class
+		class Dog:
+			# Class object attribute, these will be same for any instance of class
+			legs = 4
+			def __init__(self, breed, name):
+				self.breed = breed
+				self.name = name
+
+			def bark(self):								-----> methods are just like functions but inside a class that perform some operation
+				print("WOOF!!!")
+		my_dog = Dog("huskie","Tommy")
+		my_dog.bark()   								-----> WOOF!!!
+	
+	
+		class Dog:
+			# Class object attribute, these will be same for any instance of class
+			legs = 4
+			def __init__(self, breed, name):
+				self.breed = breed
+				self.name = name
+
+			def bark(self,number):
+				for i in range(0,number):
+					print("WOOF!!")
+		my_dog = Dog("huskie","Tommy")
+		my_dog.bark(3)
+		
+		output:
+			WOOF!!
+			WOOF!!
+			WOOF!!
+			
+	
+	Fully defined class example
+	
+		class Cylinder():
+
+			# Class attribute - pi
+			pi = 3.14
+
+			def __init__(self,radius,height):
+				self.radius = radius
+				self.height = height
+
+			def calculateVolume(self):
+				return Cylinder.pi * (self.radius**2) * self.height
+
+			def calculateSurfaceArea(self):
+				return 2 * Cylinder.pi * self.radius
+
+		cyl = Cylinder(314,30)
+		print("Volume is {}".format(cyl.calculateVolume()))
+		print("Surface area is {}".format(cyl.calculateSurfaceArea()))
+	
+		output :
+			Volume is 9287743.2
+			Surface area is 1971.92
+			
+	
+	Inheritance and Polymorphism
+	
+		Inheritance:
+
+			class Animal():								---- base class
+				def __init__(self):
+					print("In animal class")
+				def who_am_i(self):
+					print("I am an animal")
+
+			class Dog(Animal):							---- inherting animal class
+				def __init__(self):
+					Animal.__init__(self)				---- calling animal class init method
+					print("In Dog class")
+				def who_am_i(self):						---- overriding base class method
+					print("I am a dog")
+				def bark(self):							---- extra method in child class
+					print("I am a barking dog")
+			my_dog = Dog()
+			my_dog.who_am_i()
+			my_dog.bark()
+			
+			output:
+			In animal class
+			In Dog class
+			I am a dog
+			I am a barking dog
+			
+		Polymorphism:
+			
+			one way of polymophism using for loop
+			
+			class Dog():
+				def __init__(self,name):
+					self.name = name
+				def speak(self):
+					return self.name + " says WOOF!"
+			class Cat():
+				def __init__(self,name):
+					self.name = name
+				def speak(self):
+					return self.name + " says MEOW!"
+			niko = Dog("niko")
+			felix = Cat("felix")
+			for pet in [niko,felix]:
+				print(type(pet))
+				print(pet.speak())						----- same name method is being called 
+				
+			output:
+			<class '__main__.Dog'>
+			niko says WOOF!
+			<class '__main__.Cat'>
+			felix says MEOW!
+			
+			
+			most common way is making a function and using it
+			
+			class Dog():
+				def __init__(self,name):
+					self.name = name
+				def speak(self):
+					return self.name + " says WOOF!"
+			class Cat():
+				def __init__(self,name):
+					self.name = name
+				def speak(self):
+					return self.name + " says MEOW!"
+			niko = Dog("niko")
+			felix = Cat("felix")
+			def pet_speak(pet):
+				print(pet.speak())						---- here pet function doesn't know about speak method() and it get its definition only when objects of dog and cat class are passed
+			pet_speak(niko)
+			pet_speak(felix)
+			
+			
+		Abstract class - which doesn't need to be instantiated 
+			
+			class Animal():
+				def __init__(self,name):
+					self.name = name
+				def speak(self):
+					raise NotImplementedError("Child class must implement this parent class abstract method")  ----- abstract class since it is not doing anything
+			class Dog(Animal):															---- Inheriting Animal class and there is no need to define init method in child class
+				def speak(self):
+					print("I am speaking in child class")
+			dog = Dog("Fido")
+			dog.speak()
+			
+		
+		Special (Magic/Dunder) Methods - using built in python functions for user defined objects
+		
+			__str__ method :
+			
+				class Book():
+					def __init__(self,title,author):
+						self.title = title
+						self.author = author
+
+					def __str__(self):						----- this str method makes sure that whenever string representation is required from the object, this method will get run and return 
+						return f"Book title is '{self.title}' authored by {self.author}"
+
+				b = Book("Programming Concepts","Guru")
+				print(b)  -----> Book title is 'Programming Concepts' authored by Guru
+				
+			__len__ method:
+			
+				class Book():
+					def __init__(self,title,author,pages):
+						self.title = title
+						self.author = author
+						self.pages = pages
+
+					def __str__(self):
+						return f"Book title is '{self.title}' authored by {self.author}"
+
+					def __len__(self):
+						return self.pages
+
+				b = Book("Programming Concepts","Guru",1000)
+				print(len(b))  -----> 1000
+				
+			'del' method:
+				del b(object name)       			---- this method will delete the object from the memory and you cant access it again then
+	
+	
+			__del__ method:  						---- you can specify some extra information which will be displayed when delete method is called
+			
+				class Book():
+					def __init__(self,title,author,pages):
+						self.title = title
+						self.author = author
+						self.pages = pages
+
+					def __str__(self):
+						return f"Book title is '{self.title}' authored by {self.author}"
+
+					def __del__(self):
+						print("A book is deleted")				---- specifying extra info when delete operation is performed
+
+				b = Book("Programming Concepts","Guru",1000)
+				print(b)
+				del b
+				
+				output:
+					Book title is 'Programming Concepts' authored by Guru
+					A book is deleted
+					
+	
+
+	Modules and Packages
+		
+		Modules are just .py scripts that you can call in another .py scripts
+		Packages are a collection of modules
+		
+		Importing from a module:
+			we have a module.py script in which we have defined my_func named function, we can use this fucntion in some other .py script file as :
+			
+			<main.py>
+			from my_module import my_func
+
+			my_func()
+			
+		Creating Packages in python	
+			Packages are collection of number of modules, these are created for better code management
+			Package is just like normal directory in which it is mandatory to have __init__.py file because this file tells python that this directory is a package and not a normal directory.
+			In PyCharm, just like creating .py files, there is option to create python package
+			
+			We have following hierarchy
+			
+				MainPackage									--- main package containing all the files
+					__init__.py
+					main_package_script.py
+						func()								--- inside fucntion just to print something
+					SubPackage								--- this is a package inside a package
+						__init__.py							--- empty files just to tell python that this directory is a package
+						sub_package_script.py				--- actual script files
+							func()
+			
+			We can call the two functions which are inside the .py files as:
+			
+				<main.py>
+				from MainPackage.main_package_script import func			--- directly importing function 
+				from MainPackage.SubPackage import sub_package_script		--- importing first py file and then importing function
+
+				func()
+				sub_package_script.func()
+			
+			or it can be done in below manner also
+			
+				from MainPackage import main_package_script
+				from MainPackage.SubPackage.sub_package_script import func
+
+				main_package_script.func()
+				func()
+				
+		Pip Install and PyPi
+		
+			PyPi is a repository for open source third party python packages.
+			We have only used till now built in libraries in python, for ex math library
+			We can directly install packages in pycharm
+			
+		_name_ and "_main"
+		
+			if __name__ == "__main__": --- it is used to check whether a particular script has been run directly or it has been imported by some other .py script
+			
+			<main.py>
+			
+				def my_func():
+					print("I am in my_module.py")
+
+				print("Top Level in mymodule.py")
+
+				if __name__ == "__main__":
+					print("mymodule is run directly")
+				else:
+					print("mymodule is imported")
+			
+			<my_module.py>
+			
+				def my_func():
+					print("I am in my_module.py")
+
+				print("Top Level in mymodule.py")
+
+				if __name__ == "__main__":
+					print("mymodule is run directly")
+				else:
+					print("mymodule is imported")
+			
+			
+			output:
+				Top Level in mymodule.py
+				mymodule is imported
+				Top level in main
+				main is run directly
+				I am in my_module.py
+				
+	
+	Errors and Exception Handling
+		
+		We have three keywords for error and exception handling.
+			try: block of code to be attempted 	
+			except: block of code that will be executed if there is any error in try block code
+			finally: will be execute regardless of error
+			
+		Unit Testing
+			we will see two testing tools:
+				pylint: this is a library that looks at your code and reports back possible issues
+				unittest: this built in library lets you test your code and check whether you are getting desired outputs
+				
+				Pylint
+					python has a set of style convention rules known as "PEP 8"
+					
+				Unit Test library
+					it is used for unit testing of the code
+				
+						<main.py>
+						def cap_text(text):
+							return text.title()
+							
+						<Demo.py> or our unit tests
+						import unittest
+						import main
+
+
+						class TestCap(unittest.TestCase):    			inheriting TestCase class from unittest module
+
+							def test_one_word(self):
+								text = "python"
+								result = main.cap_text(text)
+								self.assertEqual(result, "Python")		using self.assertEqual to check the output returned by your code	
+
+							def test_multiple_words(self):
+								text = "monty python"
+								result = main.cap_text(text)
+								self.assertEqual(result, "Monty Python")
+
+
+						if __name__ == "__main__":
+							unittest.main()
+			
+	Random module - shuffle method:
+		It is used to shuffle elements in a list or tuple
+		for ex :
+			ls = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+			random.shuffle(ls)
+			print(ls) -----> ['Diamonds', 'Hearts', 'Spades', 'Clubs']
+			
+	
+	Special way to print collection:
+	
+		l = [1,2,3,4,5,6,7,8]
+		print("List is : ", *l, sep="\n") --- The asterisk * symbol is used to print every item in a collection, and the sep='\n ' argument prints each item on a separate line.
+		
+	To check all the global variables:
+		print(globals()) --> will return a dictionary of all global variables
+		
+		
+	Decorators with python overview:
+	
+		Decorators allow you to 'decorate' a function.
+		they allow you to tack on extra functioanlity to an already existing function
+		they use the @ operator and are then placed on top of the original function
+			
+			@some_decorator
+			def some_func():
+				# do stuff
+				return something
+				
+		this idea is pretty abstract in practice with python syntax , so we will go through the steps of manually building out a decorator ourselves to show what the @ opeartor is doing behind the scenes
+		
+		
+		Nested functions
+			def hello():
+				print("This is inside hello() function")
+
+				def greet():
+					print("\t This greet function is inside hello function")
+
+				def welcome():
+					print("\t This welcome function is inside welcome function")
+
+				greet()
+				welcome()
+				print("This is end of hello function")
+
+			hello()
+			
+			output: --- we can not call greet and welcome functions outside since there scope is inside hello function
+				This is inside hello() function
+					 This greet function is inside hello function
+					 This welcome function is inside welcome function
+				This is end of hello function
+		
+		
+		
+		
+		Returning functions from a function:
+		
+			def hello(name="Jose"):
+				print("This is inside hello() function")
+
+				def greet():
+					return "\t This greet function is inside hello function"
+
+				def welcome():
+					return "\t This welcome function is inside welcome function"
+
+				if name == "Jose":
+					return greet
+				else:
+					return welcome --- we are returning greet and welcome, not greet() and welcome(). This is because when you put a pair of parentheses after it, 
+										the function gets executed; whereas if you don’t put parentheses after it, then it can be passed around and can be assigned to other variables without executing it.
+					
+			g = hello("g") --- here it is returning the welcome functions and then below we are printing welcome() fucntion
+			print(g())   --- can also be done like print(hello()())
+			
+			output:
+				This is inside hello() function
+					 This welcome function is inside welcome function
+					 
+					 
+		Passing function as an argument:
+		
+			def hello():
+				print("Hi Vinayak")
+
+			def other(some_def):
+				print("Other function")
+				print(some_def())
+
+			other(hello)   --- mind it, if we pass hello as function like hello(), then it will throw an TypeError saying - TypeError: 'NoneType' object is not callable
+			
+			out:
+				Other function
+				Hi Vinayak
+				None
+				
+		
+		Creating decorators:
+		
+			normal way of wrapping additional code to the original function :
+			
+				def new_decorator(original_func):
+
+					def wrap_func():
+						print("Some extra code before the original function")
+						original_func()
+						print("Some extra code after the original function")
+
+					return wrap_func
+
+				def func_needs_decorator():
+					print("I need decoration")
+
+				decorated_func = new_decorator(func_needs_decorator)
+				print(decorated_func())
+				
+				out:
+					Some extra code before the original function
+					I need decoration
+					Some extra code after the original function
+					None
+					
+			this is the normal way by declaring new code in a new function and then calling ur original function somewhere in between but it has the disadvantage that if we need to remove that extra code then we would have to change our code alot, this problem is solved by decorators
+			
+			using decorator @ syntax :
+			
+				def new_decorator(original_func):
+
+					def wrap_func():
+						print("Some extra code before the original function")
+						original_func()
+						print("Some extra code after the original function")
+
+					return wrap_func
+
+				@new_decorator
+				def func_needs_decorator():
+					print("I need decoration")
+
+				func_needs_decorator()
+				
+				out:
+					Some extra code before the original function
+					I need decoration
+					Some extra code after the original function
+					
+			and if i want to remove my extra code :
+			
+				def new_decorator(original_func):
+
+					def wrap_func():
+						print("Some extra code before the original function")
+						original_func()
+						print("Some extra code after the original function")
+
+					return wrap_func
+
+				# @new_decorator
+				def func_needs_decorator():
+					print("I need decoration")
+
+				func_needs_decorator()
+				
+				out:I need decoration
+				
+			
+	Generators with Python:
+		generator functions allow us to write functions that can send back a value and then later resume to pick up where it left off
+		this type of function is a generator in Python , allowing us to generate a sequence of values over time
+		the main difference in syntax will be the use of yield statement
+		
+		when a generator function is compiled they become an object that supports an iteration protocol
+		that means when they are called in your code they don’t actually return a value and then exit
+		
+		instead generator functions will automatically suspend and resume their execution state around the last point of value generation
+		the advantage is that instead of having to compute an entire series of values up front , the generator computes one value and waits until the next value is called for
+		
+		for example, the range() function doesnot produce an list in memory for all the values from start to stop, instead it just keeps track of the last number and the step size to provide a flow of numbers, so if user needs the list then we have to transform the generator to a list with list(range(0,10))
+		
+		lets see some examples:
+
+			def create_cubes(n):
+				result = []
+				for x in range(n):
+					result.append(x**3)
+				return result
+
+
+			print(create_cubes(7)) --> this will give output as [0, 1, 8, 27, 64, 125, 216] but for example we need to print the cubes one by one then it is memory 
+									headache since whole of the list is stored in memory together
+		
+			for l in create_cubes(7):
+				print(l)	---> this is headache on memory because we require the values one by one
+				
+		creating geneator:
+		
+			def create_cubes(n):
+				for x in range(n):
+					yield x**3 ---- using yield keyword we have changed the above function to a geneartor
+
+			print(create_cubes(7))   --- it will not print the cubes since it just returns an iterable generator object, for printing we have to iterate over it
+			
+			out: <generator object create_cubes at 0x021C8330> 
+			
+			for n in create_cubes(7):
+				print(n) --- this will print the contents in generator on console, so here by using generator, we have saved a lot of memory headache because if we
+								would have required cubes till 100000, it would have adversely impacted memory while execution
+		
+		
+		
+		next() function in generator :  gives us the next value in the geneartor object
+		
+			def create_cubes(n):
+				for x in range(n):
+					yield x**3
+
+			g = create_cubes(3)
+			print(g)
+			print(next(g))
+			print(next(g))
+			print(next(g)) --- this is what geneartor is doing, it is keeping track of the previous value and then returning the next value, if we dont have any value left, it will give us StopIteration error.
+								for loop which we have used above to print values in geneartor is using next() function internally
+								
+		iter() function : allows us to iterate over normal object which dont normaly expect
+		 
+			s = "hello"
+			for l in s:
+				print(l)  ---- we know we will get each charater one by one but if we do the following:
+				
+			next(s) --- it will throw an error saying that "'str' object is not an iterator", so if we want to convert str object into iterator, we have to use iter() function and then  we can use next() 
+						function to iterate over it
+
+			s = "vinayak"
+			s_iter = iter(s)
+			print(next(s_iter))
+			print(next(s_iter))		--- this will print 'v' and 'i' 
+			
+		The other advantage of using yield keyword is that, we can write two yield statements in a single function like:
+			def func(n):
+				yield n
+				yield n + 1
+
+			for n in func(7):
+				print(n)  --- will print 7 and 8
+
+			
+		we can also write something like list comprehensions in geneartors, this is known as geneartor expressions:
+			g = (n for n in range(0,10) if n%2 == 0)
+
+			for num in g:
+				print(num) --- will print 0 2 4 6 8
+			
+	
+	Some miscellaneous concepts
+		> For rounding off float to particular decimal places, we would have to use round(float,digits) method of Decimal class in decimal module
+			round(23.456,2) --- 23.45
+			
+			
+	Collections Modules
+	
+		Built in module that implements specialized container datatypes providing alternative to Pythons's general purpose built in containers.
+		
+		Counter
+			its basically a dictionary subclass which helps count objects
+			in counter, value is stored as dictionary key and count is stored as dictionary value
+			
+				from collections import Counter
+				l = [1,2,2,331,1,5,5,5,6,66,773,7,7]
+				print(Counter(l)) ---> Counter({5: 3, 1: 2, 2: 2, 7: 2, 331: 1, 6: 1, 66: 1, 773: 1}) with values as key and count as keyed values
+				
+				s = "asasasatreioutnnvsdjne"
+				print(Counter(s)) ---> Counter({'a': 4, 's': 4, 'n': 3, 't': 2, 'e': 2, 'r': 1, 'i': 1, 'o': 1, 'u': 1, 'v': 1, 'd': 1, 'j': 1})
+				
+			it comes handy when to find occurence of words in a sentence
+				
+				st = "How many how Many MANY words showed up up in a sentence"
+				words = st.split()
+				print(Counter(words)) --- case sensitive comaprison
+				
+				output:
+					Counter({'up': 2, 'How': 1, 'many': 1, 'how': 1, 'Many': 1, 'MANY': 1, 'words': 1, 'showed': 1, 'in': 1, 'a': 1, 'sentence': 1})
+					
+			Methods in Counter
+			
+				most_common(3) --- will return you the 3 most common occurences
+				
+					st = "How many how how how Many MANY words showed up up in a sentence"
+					words = Counter(st.split())
+					print(words.most_common(3)) ---> [('how', 3), ('up', 2), ('How', 1)]
+					
+				
+				sum(c.values()) --- gives you the sum of total occurences , we can use this to find total number of words in a sentence
+					
+						print(sum(words.values())) ---> 14
+						
+				c.most_common()[:-n-1:-1] --- gives your n least common elements
+						
+						print(words.most_common()[:-4:-1]) ---> [('sentence', 1), ('a', 1), ('in', 1)]
+						
+				c += Counter --- remove zero and negative counts
+				
+		
+		defaultdict
+			it is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary.
+			Using defaultdict is faster than doing the same using dict.set_default method.
+			
+			A defaultdict will never raise a keyError. Any key that does not exists gets the value returned by the default factory.
+			
+				d = {"k1":1}
+				print(d["k2"]) --- will throw a KeyError because k2 is not present in dictionary "d"
+				
+				
+				
+		Ordereddict
+			
+			orderedDict is dictionary subclass that remembers the order in which its contents are added
+			in mormal dictionary, no order is stored when items are stored in it, that why the below two dictionaries will give True as output
+			
+				d = {}
+				d["a"] = 1
+				d["b"] = 2
+
+				d1 = {}
+				d1["b"] = 2
+				d1["a"] = 1
+
+				print(d == d1) ----> True
+				
+			but if we would have used orderdDict, then the equality would have been false
+			
+				d = OrderedDict()
+				d["a"] = 1
+				d["b"] = 2
+
+				d1 = OrderedDict()
+				d1["b"] = 2
+				d1["a"] = 1
+				
+				print(d == d1) ---> False because here the order is maintained and it is also being checked
+				
+		namedTuple
+			
+			it assigns names and numerical index to each element in a tuple
+			this comes handy if you have issues remembering the indexes in a tuple to retrieve the elements
+			Each kind of namedtuple is represented by its own class, created by using the namedtuple() factory function. The arguments are the name of the new class and a string containing the names of the elements.
+			
+			We construct the namedtuple by first passing the object type name (Dog) and then passing a string with the variety of fields as a string with spaces between the field names
+				from collections import namedtuple
+				Dog = namedtuple("Dog","age name breed")
+				sam = Dog(age=2,name="Sann",breed="lab")
+				print(sam.name) ---> Sann
+				print(sam[0]) ---> 2
+				
+			you should use named tuples instead of tuples anywhere you think object notation will make your code more pythonic and more easily readable
+			the difference from class is that the attributes in namedtuple are immutable i.e. they cant be changed
+			
+			methods in namedTuple:
+				
+				_make(): Class method that makes a new instance from an existing sequence or iterable.
+				
+					from collections import namedtuple
+					Dog = namedtuple("Doggy","age name breed")
+					ld = [3,"Manny","beagle"]
+					mann = Dog._make(ld)
+					print(mann) ---> Doggy(age=3, name='Manny', breed='beagle')
+					
+				_asdict() : Return a new OrderedDict which maps field names to their corresponding values
+				
+					ord = sam._asdict()
+					print(ord) ---> OrderedDict([('age', 2), ('name', 'Sann'), ('breed', 'lab')])
+					
+				_replace(attribute = new_value) : Return a new instance of the named tuple replacing specified fields with new values
+				
+					print(sam) ---> Doggy(age=2, name='Sann', breed='lab')
+					s = sam._replace(name="Manny")
+					print(sam) ---> Doggy(age=2, name='Sann', breed='lab')
+					print(s) ---> Doggy(age=2, name='Manny', breed='lab')
+					
+				_source() : A string with the pure Python source code used to create the named tuple class. The source makes the named tuple self-documenting. 
+							It can be printed, executed using exec(), or saved to a file and imported.
+				
+				_fields : Tuple of strings listing the field names. Useful for introspection and for creating new named tuple types from existing named tuples.
+					
+					print(sam._fields) ---> ('age', 'name', 'breed')
+					
+				getattr(namedTuple object, field name) : 
+					
+					print(getattr(sam,"age")) ---> 2
+					
+				To convert a dictionary to a named tuple, use the double-star-operator:
+				
+					from collections import namedtuple, OrderedDict
+					Dog = namedtuple("Doggy","age name breed")
+					dic = {"age":20,"name":"Sammy","breed":"lab"}
+					sam = Dog(**dic)
+					print(sam) ---> Doggy(age=20, name='Sammy', breed='lab')
+					
+		
+		deque 
+			
+			Returns a new deque object initialized left-to-right (using append()) with data from iterable. If iterable is not specified, the new deque is empty.
+			Same as list but insertion and removal operations are faster than list but retrieval using index is slow as compared to list
+			
+				from collections import deque
+				d = deque("vina", maxlen = 5) --- after the max length is achieved, the elements are removed from the left side
+				for i in d:
+					print(i) ---> v i n a
+				d.append(1)
+				d.append("vin")
+				print(d) ---> deque(['v', 'i', 'n', 'a', 1, 'vin'])
+				
+			it  has a number of useful methods which you can see from python documentation such as rotate, extendleft, appendleft, etc
+			
+		
+		ChainMap
+				
+			Python also contains a container called “ChainMap” which encapsulates many dictionaries into one unit. ChainMap is member of module “collections“.
+			
+				from collections import ChainMap
+				d = {"a":"A","b":"B"}
+				d1 = {"a":1,"d":2}
+				c = ChainMap(d,d1) ---> ChainMap({'a': 'A', 'b': 'B'}, {'a': 1, 'd': 2})
+			if we access c["a"], A will be retrieved because ordering is done on the basis of insertion of mappings
+				
+			A ChainMap incorporates the underlying mappings by reference. So, if one of the underlying mappings gets updated, those changes will be reflected in ChainMap.
+			
+				from collections import ChainMap
+				d = {"a":"A","b":"B"}
+				d1 = {"a":1,"d":2}
+				c = ChainMap(d,d1)
+				print(c) ---> ChainMap({'a': 'A', 'b': 'B'}, {'a': 1, 'd': 2})
+				d["a"] = "Vinayak"
+				
+			c.maps - returns a list containing updeatlable list of mappings
+			
+			new_child - Returns a new ChainMap containing a new map followed by all of the maps in the current instance.
+						If m is specified, it becomes the new map at the front of the list of mappings; if not specified, an empty dict is used
+						
+			parents - Property returning a new ChainMap containing all of the maps in the current instance except the first one.
+				print(c.parents) ---> ChainMap({'a': 1, 'd': 2})
+				
+		UserDict
+		
+		UserList
+		
+		UserString
+		
+	
+	DateTime Module
+		
+		Time class
+		Helps to work with dates and time stamps, gives us the value of minimun and maximum time it can take, it value is not in the range, ValueError is thrown
+		
+			from datetime import time
+			print(time.min) ---> 00:00:00
+			print(time.max) ---> 23:59:59.999999
+		
+			t = time(25,67,3)
+			print(t) ---> ValueError: hour must be in 0..23
+			
+			
+			from datetime import time
+			t = time(22,45,3) --- storing time
+			print(t.hour) ---> 22 retrieving hours, minutes , seconds , microseconds, tzinfo (time zne info) etc
+			
+			import datetime
+			t = datetime.datetime.today() --- calculating today date along with time
+		
+		Date class
+		
+			import datetime
+			t = datetime.date.today()
+			td = datetime.date(2018,12,3)
+			print(t) --- printing today's date
+			print(td) 
+			print(td.timetuple()) --- gives info about various attributes in the form of tuple
+			
+			using replace method on existing date
+			
+			import datetime
+			t = datetime.datetime.today()
+			td = datetime.date(2018,12,3)
+			tc = t.replace(year=2017)
+			print(t)
+			print(td)
+			print(tc) --- 2017
+			
+			
+		We can also perform arithmetic operations on date time objects to check time differences
+		
+			import datetime
+			t = datetime.datetime(2018,5,6,2,20,23)
+			td = datetime.datetime(2017,11,5,22,20,23)
+			print(t)
+			print(td)
+			tc = t - td ---> 181 days, 4:00:00
+			print(type(tc)) --- return an object of timedelta type
+		
+	
+	Python Debugger module (pdb)
+	
+		We have to set pdb.set_trace() where we think error might have come and then we will be able to debug the code, for that we would have to import pdb from python
+		
+			import pdb
+			
+			pdb.set_trace()
+			
+			
+	Timing your code
+		
+		In order to know time taken by your code or by a particular line, python has in built timing module to do this
+		This module provides a simple way to time small bits os python code. It has both a command line interface as well as a callable one and it avoids a number of common traps for measuring execution times.
+		
+		
+			import timeit
+			print("-".join(str(n) for n in range(100)))
+			t = timeit.timeit("'-'.join(str(n) for n in range(100))", number= 10000)
+			print(t) ---> 0.3515329489480195
+			
+			t = timeit.timeit("'-'.join([str(n) for n in range(100)])", number= 10000)
+			print(t) ---> 0.3141264366091878
+			
+			t = timeit.timeit("'-'.join(map(str, range(100)))", number= 10000)
+			print(t) ---> 0.2620875706906067
+		
+		so here we can see that the time taken by map is lowest among three
+		
+			
+	Regular Expressions
+	
+		These are text matching patterns
+		Regular expressions can include a variety of rules, from finding repetition, to text-matching, and much more.
+		we will be using re module for regular expressions
+		
+		Searching for Patterns in Text
+		
+			import re
+			patterns = ["term1", "term2"]
+			text = "This is a string with term1 but not the other term"
+			print(re.search(patterns[0], text)) ---> will return a Match object is search successful , otherwise None, we can check various things with these Match objects,  We can use various methods on this Match object
+		
+		
+			match = re.search(patterns[0], text)
+			print(match.start()) ---> 22
+			
+			
+			import re
+			patters = ["vinayak", "vaid"]
+			text = "this text contains vinayak but not the other word"
+			for p in patters:
+				if re.search(p,text):
+					print("Text is :" + text)
+					print("Word searched is :" + str(p) + " at :" + str(re.search(p,text).start()))
+				else:
+					print("Word searched is :" + str(p))
+			
+			
+		Spliting your text with re
+			
+			import re
+			text = "This is a string with term1 but not the other term"
+			sp = re.split("term1", text)
+			print(sp) ---> ['This is a string with ', ' but not the other term']
+			
+			
+		Counting instances with re 
+		
+			import re
+			text = "This is a string with term1 but not the other term"
+			sp = re.findall("t", text)
+			print(sp) ---> ['t', 't', 't', 't', 't', 't', 't', 't'], findall will create a list of number of occurences of the pattern found
+			
+			
+			import re
+			text = "this word word word is repetitive in sentence containing word"
+			print(re.findall("word", text))
+			print(len(re.findall("word", text))) ---> 44
+			
+		
+		re Pattern syntax
+			Regular expressions support a huge variety of patterns beyond just simply finding where a single string occurred.
+			We can use metacharacters along with re to find specific types of patterns.
+			
+			
+			Repetition Syntax
+				There are five ways to express repetition in a pattern:
+				
+				"+" ---> A pattern followed by the meta-character * is repeated zero or more times.  
+				"*" ---> Replace the * with + and the pattern must appear at least once. 
+				"?" ---> Using ? means the pattern appears zero or one time
+				"{3}" ---> For a specific number of occurrences, use {m} after the pattern, where m is replaced with the number of times the pattern should repeat. 
+				"{2,3}" ---> Use {m,n} where m is the minimum number of repetitions and n is the maximum. Leaving out n {m,} means the value appears at least m times, with no maximum
+			
+			
+			
+					import re
+					def find_all(patterns,phrase):
+						for pattern in patterns:
+							print("Searching phrase with pattern : " + str(pattern))
+							print(re.findall(pattern,phrase))
+							print()
+
+					test_phrase = "sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd"
+					test_patterns = ['sd*',     # s followed by zero or more d's
+									'sd+',          # s followed by one or more d's
+									'sd?',          # s followed by zero or one d's
+									'sd{3}',        # s followed by three d's
+									'sd{0,4}',      # s followed by two to three d's
+									]
+
+					find_all(test_patterns,test_phrase)
+					
+					
+					output
+						Searching phrase with pattern : sd*
+						['sd', 'sd', 's', 's', 'sddd', 'sddd', 'sddd', 'sd', 's', 's', 's', 's', 's', 's', 'sdddd']
+
+						Searching phrase with pattern : sd+
+						['sd', 'sd', 'sddd', 'sddd', 'sddd', 'sd', 'sdddd']
+
+						Searching phrase with pattern : sd?
+						['sd', 'sd', 's', 's', 'sd', 'sd', 'sd', 'sd', 's', 's', 's', 's', 's', 's', 'sd']
+
+						Searching phrase with pattern : sd{3}
+						['sddd', 'sddd', 'sddd', 'sddd']
+
+						Searching phrase with pattern : sd{0,4}
+						['sd', 'sd', 's', 's', 'sddd', 'sddd', 'sddd', 'sd', 's', 's', 's', 's', 's', 's', 'sdddd']
+				
+				
+			Character Sets
+				these are used when you wish to match any one of group of characters at a point in the input.
+				brackets are used to construct character input sets
+				
+					test_phrase = "sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd"
+					test_patterns = ['[sd]',    # either s or d
+									's[ds]*']   # s followed by one or more s or d
+
+					find_all(test_patterns,test_phrase)
+					
+					output
+						Searching phrase with pattern : [sd]
+						['s', 'd', 's', 'd', 's', 's', 's', 'd', 'd', 'd', 's', 'd', 'd', 'd', 's', 'd', 'd', 'd', 'd', 's', 'd', 's', 'd', 's', 's', 's', 's', 's', 's', 'd', 'd', 'd', 'd']
+
+						Searching phrase with pattern : s[ds]*
+						['sdsd', 'sssddd', 'sdddsddd', 'sds', 'sssss', 'sdddd']
+			
+			
+			Exclusion
+				we can use ^ to exclude terms by incorporating it into the bracket syntax notation
+				Use [^!.? ] to check for matches that are not a !,.,?, or space. Add a + to check that the match appears at least once. This basically translates into finding the words.
+				
+					test_phrase = "This is a string! But it has punctuation. How can we remove it?"
+					test_patterns = ["[^!.? ]+"]
+
+					find_all(test_patterns,test_phrase)
+					
+					output
+						Searching phrase with pattern : [^!.? ]+
+						['This', 'is', 'a', 'string', 'But', 'it', 'has', 'punctuation', 'How', 'can', 'we', 'remove', 'it']
+				
+				
+			Character Ranges
+				As character sets grow larger, typing every character that should (or should not) match could become very tedious. A more compact format using character ranges lets you define a character set to include all of the contiguous characters between a start and stop point. The format used is [start-end].
+				Common use cases are to search for a specific range of letters in the alphabet. For instance, [a-f] would return matches with any occurrence of letters between a and f.
+				
+					test_phrase = 'This is an example sentence. Lets see if we can find some letters. here are some numbers 1234 5585 0001'
+					test_patterns = ['[a-z]+',  # sequences of lower case letters
+									 '[A-Z]+',  # sequences of upper case letters
+									 '[1-4]+',
+									 '[5-9]+',
+									 '[0-9]+',
+									 '[a-zA-Z]+',  # sequences of lower or upper case letters
+									 '[A-Z][a-z]+']  # one upper case letter followed by lower case letters
+
+					find_all(test_patterns, test_phrase)
+					
+					output
+						Searching phrase with pattern : [a-z]+
+						['his', 'is', 'an', 'example', 'sentence', 'ets', 'see', 'if', 'we', 'can', 'find', 'some', 'letters', 'here', 'are', 'some', 'numbers']
+
+						Searching phrase with pattern : [A-Z]+
+						['T', 'L']
+
+						Searching phrase with pattern : [1-4]+
+						['1234', '1']
+
+						Searching phrase with pattern : [5-9]+
+						['5585']
+
+						Searching phrase with pattern : [0-9]+
+						['1234', '5585', '0001']
+
+						Searching phrase with pattern : [a-zA-Z]+
+						['This', 'is', 'an', 'example', 'sentence', 'Lets', 'see', 'if', 'we', 'can', 'find', 'some', 'letters', 'here', 'are', 'some', 'numbers']
+
+						Searching phrase with pattern : [A-Z][a-z]+
+						['This', 'Lets']
+			
+			
+			Escape Codes
+				You can use special escape codes to find specific types of patterns in your data, such as digits, non-digits, whitespace, and more.
+					\d ---> a digit
+					\D ---> a non - digit
+					\s ---> whitespace (tab, space, newline,etc)
+					\S ---> non - whitespace
+					\w ---> alphanumeric
+					\W ---> non-alphanumeric
+					
+				Escapes are indicated by prefixing the character with a backslash \. Unfortunately, a backslash must itself be escaped in normal Python strings, and that results in expressions that are difficult to read. Using raw strings, created by prefixing the literal value with r, eliminates this problem and maintains readability.
+
+				Personally, I think this use of r to escape a backslash is probably one of the things that block someone who is not familiar with regex in Python from being able to read regex code at first. Hopefully after seeing these examples this syntax will become clear.
+				
+					test_phrase = 'This is a string with some numbers 1233 and a symbol #hashtag'
+					test_patterns =[r'\d+', # sequence of digits
+									r'\D+', # sequence of non-digits
+									r'\s+', # sequence of whitespace
+									r'\S+', # sequence of non-whitespace
+									r'\w+', # alphanumeric characters
+									r'\W+', # non-alphanumeric
+									]
+
+					find_all(test_patterns, test_phrase)
+					
+					output
+						Searching phrase with pattern : \d+
+						['1233']
+
+						Searching phrase with pattern : \D+
+						['This is a string with some numbers ', ' and a symbol #hashtag']
+
+						Searching phrase with pattern : \s+
+						[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+						Searching phrase with pattern : \S+
+						['This', 'is', 'a', 'string', 'with', 'some', 'numbers', '1233', 'and', 'a', 'symbol', '#hashtag']
+
+						Searching phrase with pattern : \w+
+						['This', 'is', 'a', 'string', 'with', 'some', 'numbers', '1233', 'and', 'a', 'symbol', 'hashtag']
+
+						Searching phrase with pattern : \W+
+						[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' #']
+						
+	
+	
+	StringIO
+	
+		StringIO module implements an in-memory file like object.
+		This object can then be used as input or output to most functions that would expect a standard file object.
+		
+			from io import StringIO
+			message = "This is just an arbitrary string. "
+			# Use StringIO method to set as file object
+			f = StringIO(message)
+			print(type(f))
+			# Now we have an object f that we will be able to treat just like a file
+			print(f.read())
+			# We can also write to it
+			f.write("This is second string added in code")
+			f.seek(0)
+			print(f.read())
+			# Close the object when contents are no longer needed
+			f.close()
+			
+			output
+				<class '_io.StringIO'>
+				This is just an arbitrary string. 
+				This is just an arbitrary string. This is second string added in code
+				
+				
+	
+	Advanced Numbers
+	
+		converting numbers to hexadecimal notation
+			print(hex(100)) ---> 0x64
+			
+		converting numbers to binary notation
+			print(bin(100)) ---> 0b1100100
+			
+		calculating power to the number
+			pow(2,4) ---> 2 to the power 4 == 2**4 ---> 16
+			
+			putting three arguments means pow(a,b,c) ===> (a**b)%calculateSurfaceArea
+			
+		getting the absilute value
+			print(abs(-3)) ---> 30
+			
+		
+	Advanced Strings
+		
+		s = "".swapcase() ---> swaps the case of the string and stores in into new string
+		"".capitalise() ---> capitalises the first word in the string
+		"".upper() ---> to change all alphabets to upper case
+		"".lower() ---> to change all alphabets tolower case
+		"".count("expression") ---> counts the occurence of word/expression in a string
+		"".find() ---> returns you the index of the first occurence
+		
+		s.center(15,"!") ---> will place your string s in between '!' and total length of string will be 20 ===> !!!! hello !!!!
+		
+		s.isalnum() ---> checks all the characters in a string are alphanumeric
+		s.isaplha() ---> checks all characters are alphabets ---- "hello12" will retuns False
+		
+		s.islower() ---> True if all characters are lowercase
+		s.isupper() ---> True if all characters are upper case
+		s.isspace() ---> True if all characters are whitespace
+		s.endswith("o") ---> True if string ends with 'o'
+		s.istitle() ---> True if string is in Title case
+		
+		s.partition() ---> same as split but splits at the first instance only and will also return separator in the middle, returns a tuple ===> ('he', 'l', 'lo123')
+
+		
+	Advanced Sets
+		
+		s.clear() ---> deletes all items from set
+		
+			s = set()
+			s.add(1)
+			s.add(2)
+			print(s) --- {1, 2}
+			s.clear()
+			print(s) --- set()
+			
+		sc = s.copy() --- will make copy of s and store it as sc, since its a copy so changes to anyone doesnot affect the other one
+		
+		sc.difference(s) ---> gives you the difference of two or more sets i.e will delete common elements
+		sc.difference_update(s) ---> will delete common elemets but will also update the value of original set for two or more sets
+		
+			s = {1,2,3}
+			sc = {1,2,4,5,6}
+			sc.difference_update(s)
+			print(sc) ---> {4, 5, 6}
+			
+		s.discard(2) ---> will delete the element from the set and update it, no error if requested element is not present
+		
+		s.intersection(sc) ---> gives you the common elements from two or more sets
+		s.intersection_update(sc) --> gives you the common elements from two  or more sets and updates the value of set s with those retrieved common values
+		
+			s = {1,2,3}
+			sc = {1,2,4,5,6}
+			sc.intersection_update(s)
+			print(sc) ---> {1, 2}
+			
+		s.isdisjoint(sc) ---> True if both the sets dont have intersection
+		s.issubset(sc) ---> True if set s is subset of set sc
+		sc.issuperset() ---> True is sc contains set s_iter
+		
+		s.symmetric_difference(sc) - This is defined as the elements of either set not present in the other set, and is written as A ^ B
+			s = {1,2,3,9}
+			sc = {1,2,4,5,6}
+			print(sc.difference(s)) ---> {4, 5, 6}
+			print(sc.symmetric_difference(s)) ---> {3, 4, 5, 6, 9}
+			
+		sc.symmetric_difference_update(s) - will update set sc also
+			s = {1,2,3,9}
+			sc = {1,2,4,5,6}
+			sc.symmetric_difference_update(s) ---> {3, 4, 5, 6, 9}
+			
+		s.union(sc) ---> all elements in either set
+			print(sc)
+		
+		
+	Advanced Dictionanries
+	
+		Dictionaries comprehension:
+			print({x:x**2 for x in range(10)}) ---> {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+			
+				here we have keys as integers, we can also assign keys as string types
+			
+			print({k:v**2 for k,v in zip([x for x in "Vinayak"],range(8))}) ---> {'V': 0, 'i': 1, 'n': 4, 'a': 25, 'y': 16, 'k': 36}
+			
+				here we have used zip function which takes in tuple and first argument of tuple is a list containing keys which will be assigned to dictionary and the second argument is list of values
+				
+		print(d.items()) ---> dict_items([('a', 1), ('b', 2)])
+		print(d.keys()) ---> dict_keys(['a', 'b'])
+		print(d.values()) ---> dict_values([1, 2])
+		
+		
+		
+	Advanced Lists
+	
+		l = [1,2,3]
+		
+		l.count(1) ---> 1
+		l.count(10) ---> 0
+		
+		diff between .append() and .extend()
+		
+			l = [1,2,3]
+			l.append([4,5])
+			print(l)
+			l.extend([5,6])
+			print(l)
+			
+			output
+				[1, 2, 3, [4, 5]]
+				[1, 2, 3, [4, 5], 5, 6]
+		
+		l.index(element) --> gives you index of element if present, it not present, gives ValueError
+		
+		l.insert(index,element) ---> inserts the requested element at the specified index
+		
+			l = [1,2,3]
+			l.insert(1,"VInayak")
+			print(l) ---> [1, 'VInayak', 2, 3], if we had given index more than 2 in this case, element will be added at the end
+			
+		el = l.pop(index) ---> pops the element at the specified index value, default value is last
+		
+		l.remove(element) ---> only removes the first instance from the list if more than one present
+		
+		l.sort() ---> sorts your list
+		
+		
+	Python GUIs with IPyWidgets
+	
+		
+	Miscellaneous concepts
+		
+		Sorted function - sorts your iterable on custom creteria
+		
+		
+	TextWrap Module
+		
+		The textwrap module provides two convenient functions: wrap() and fill()
+		
+		textwrap.wrap() 
+			The wrap() function wraps a single paragraph in text (a string) so that every line is width characters long at most. 
+			
+		textwrap.fill() 
+			The fill() function wraps a single paragraph in text and returns a single string containing the wrapped paragraph.
+			It returns a list of output lines.
+			
+			
+			import textwrap
+			string = "ABCDEFGHIJKLIMNOQRSTUVWXYZ"
+			print(textwrap.wrap(string,4))
+
+			print(textwrap.fill(string,4))
+			
+			output - 
+				['ABCD', 'EFGH', 'IJKL', 'IMNO', 'QRST', 'UVWX', 'YZ']
+				ABCD
+				EFGH
+				IJKL
+				IMNO
+				QRST
+				UVWX
+				YZ
