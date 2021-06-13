@@ -157,7 +157,7 @@ Strings in python
 		my_dict = {'k1':123,'k2':[1,3,4,4],'k3':{'insideKey':'Inside dictionary'}}
 		print(my_dict['k3']) ------> {'insideKey': 'Inside dictionary'}
 		
-		Dictionaries are also immutable
+		Dictionaries are also mutable
 	
 	Tuples in python
 		These are similar to lists, they have one difference - immutability
@@ -176,6 +176,7 @@ Strings in python
 		When you need to pass objects in your program, u can use tuples because you want to make sure that objects does not change
 		
 	Sets in python
+		Mutable
 		Unordered collections of unique elements
 		Meaning there will be only one representative of the same object, duplicay not allowed
 		
