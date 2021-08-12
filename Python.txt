@@ -933,6 +933,19 @@ Object Oriented Programming - Python
 			I am a dog
 			I am a barking dog
 			
+		Encapsulation - 
+			Encapsulation, as I mentioned in the initial part of the article, is a way to ensure security. Basically, it hides the data from the access of 		outsiders. Such as if an organization wants to protect an object/information from unwanted access by clients or any unauthorized person then encapsulation is the way to ensure this.
+
+You can declare the methods or the attributes protected by using a single underscore ( _ ) before their names. Such as- self._name or def _method( ); Both of these lines tell that the attribute and method are protected and should not be used outside the access of the class and sub-classes but can be accessed by class methods and objects.
+
+Though Python uses ‘ _ ‘ just as a coding convention, it tells that you should use these attributes/methods within the scope of the class. But you can still access the variables and methods which are defined as protected, as usual.
+
+Now for actually preventing the access of attributes/methods from outside the scope of a class, you can use “private members“. In order to declare the attributes/method as private members, use double underscore ( __ ) in the prefix. Such as – self.__name or def __method(); Both of these lines tell that the attribute and method are private and access is not possible from outside the class.
+
+When we tried accessing the private variable using the description() method, we encountered no error. But when we tried accessing the private variable directly outside the class, then Python gave us an error stating: car object has no attribute ‘__name’.
+
+You can still access this attribute directly using its mangled name. Name mangling is a mechanism we use for accessing the class members from outside. The Python interpreter rewrites any identifier with “__var” as “_ClassName__var”. And using this you can access the class member from outside as well.
+			
 		Polymorphism:
 			
 			one way of polymophism using for loop
