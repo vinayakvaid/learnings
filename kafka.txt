@@ -93,12 +93,14 @@
 	Producers and consumers dont know about each other which means if in starting we have one producer attached to one topic and we have two consumers reading from that topic, 
 	now if we create another producer with same topic and send messages, it will also be automatically read by two existing consumers if they are attached to same 
 	
+	Every message inside kafka topic has unique number called 'offset'. First message has offset - 0
+	
 > For starting kafka :
 	1) First zookeeper needs to be started
 	2) kafka server (broker) needs to be started
 	3) topic needs to be created
-  4) Start a producer
-  5) Start a consumer
+  	4) Start a producer
+  	5) Start a consumer
 
 > Where kafka stores messages sent by producer - 
   Kakfa stores messages in /tmp/kafka-logs, this parameter is set in server.properties files  : log.dirs=/tmp/kafka-logs
@@ -111,10 +113,9 @@
       -rw-rw-r-- 1 nitu nitu       43 Jul  9 22:17 partition.metadata
       -rw-rw-r-- 1 nitu nitu        8 Jul  9 22:17 leader-epoch-checkpoint
       -rw-rw-r-- 1 nitu nitu      224 Jul  9 22:19 00000000000000000000.log
-	
+  
+  kafka messages has their life, after which they get deleted. Default log retention period is 7 days.
+  
+> There are also system topics created in /tmp/kafka-logs folder with names - __consumer_offsets-0 till __consumer_offsets-49 - means there are 50 partitions of system topic __consumer_offsets
 
-		
-		
-
-	
-	
+> Other important log to monitor is kafka's server log logs/server.log
