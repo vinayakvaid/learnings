@@ -1,0 +1,120 @@
+> kafka saved directory - /home/nitu/kafka
+
+> kafka directory contents -
+
+	(base) nitu@nitu-sharma:~/kafka$ ls
+	bin  config  libs  LICENSE  licenses  NOTICE  site-docs
+	
+	bin - has code to start kafka servies
+	config - has config related files
+	libs - has jars necessary for kafka
+	
+> starting kafka service - 
+	on every computer, you are able to run multiple kafka servers (brokers)
+	
+	starting - bin/kafka-server-start.sh config/server.properties
+		This will not run kafka since zookeeper is required to be run first
+		
+	zookeeper is mandatory in the kafka cluster and broker will not be started if zookeeper is unavailable
+	
+	kafka server log - logs/server.log
+	
+	default - localhost:9092
+	
+> Starting zookeeper - 
+	bin/zookeeper-server-start.sh config/zookeeper.properties
+	
+	zookeeper logs - mentioned in zookeeper.properties
+		dataDir=/tmp/zookeeper
+		
+	default - localhost:2181
+		
+	/tmp/kafka-logs/ - directory for storing producer and consumer messages
+	
+	single kafka cluster means - zookeeper + kakfa server (broker)
+	
+> Creating kafka topic - 
+	creating topic with name - 'cities'
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic cities
+		Created topic cities.
+		
+	/tmp/kafka-logs/cities-0 - the name has cities-0 due to parameter in server.properties set to 1 i.e. num.partitions=1
+	
+	If we create a new topic with same name, it will throw an error -
+		Error while executing topic command : Topic 'cities' already exists.
+		[2024-06-07 19:14:24,901] ERROR org.apache.kafka.common.errors.TopicExistsException: Topic 'cities' already exists.
+		 (org.apache.kafka.tools.TopicCommand)
+		 
+	Check which topics are available on the kafka cluster - 
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+		cities
+		
+	Fetch details about the topic - 
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic cities
+		Topic: cities	TopicId: dMRRcUWiR2m2poaZJJmiNw	PartitionCount: 1	ReplicationFactor: 1	Configs: 
+			Topic: cities	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+			
+> Producing and Consuming messages using built in kafka console producer and consumer - 
+	Sending message - 
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic cities
+		>New York
+		>Berlin
+		>Sydney
+		>Pune
+		>Delhi
+		>Mumbai
+		>Chennai
+
+		
+		These are the messages which have been sent to kafka cluster
+		
+	Consuming message (in new terminal) -
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic cities
+		Mumbai
+		Chennai
+		
+		Using these arguments can only read messages sent after consumer was up and running
+		
+	Consuming messages from beginning - 
+		(base) nitu@nitu-sharma:~/kafka$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic cities --from-beginning
+		New York
+		Berlin
+		Sydney
+		Pune
+		Delhi
+		Mumbai
+		Chennai
+		
+	Even if consumer has consumed the messages, consumer can again read it. Hence, Kafka cluster stores messages even if they are already consumed by one of the consumers.
+	Same messages can be read multiple times by different consumers.
+	
+	Multiple consumers and producers could exchange messages via single centralized storage point - kafka cluster. i.e. we can read the same message produced by single producer from two different consumers.
+	
+	Producers and consumers dont know about each other which means if in starting we have one producer attached to one topic and we have two consumers reading from that topic, 
+	now if we create another producer with same topic and send messages, it will also be automatically read by two existing consumers if they are attached to same 
+	
+> For starting kafka :
+	1) First zookeeper needs to be started
+	2) kafka server (broker) needs to be started
+	3) topic needs to be created
+  4) Start a producer
+  5) Start a consumer
+
+> Where kafka stores messages sent by producer - 
+  Kakfa stores messages in /tmp/kafka-logs, this parameter is set in server.properties files  : log.dirs=/tmp/kafka-logs
+  Inside this folder, there should be folder created with the name of topic appended by partition number, in our case its cities-0
+  The messages are stored in half readable format in 00000*000.log file
+      (base) nitu@nitu-sharma:/tmp/kafka-logs/cities-0$ ls -ltr
+      total 12
+      -rw-rw-r-- 1 nitu nitu 10485760 Jul  9 22:17 00000000000000000000.index
+      -rw-rw-r-- 1 nitu nitu 10485756 Jul  9 22:17 00000000000000000000.timeindex
+      -rw-rw-r-- 1 nitu nitu       43 Jul  9 22:17 partition.metadata
+      -rw-rw-r-- 1 nitu nitu        8 Jul  9 22:17 leader-epoch-checkpoint
+      -rw-rw-r-- 1 nitu nitu      224 Jul  9 22:19 00000000000000000000.log
+	
+
+		
+		
+
+	
+	
